@@ -132,6 +132,17 @@ const AuthForm: React.FC<AuthFormProps> = ({ onAuthSuccess }) => {
                 className="w-full px-4 py-3 rounded-lg bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-300"
               >
                 <option value="en" className="bg-gray-800">English</option>
+                <option value="hi" className="bg-gray-800">हिंदी (Hindi)</option>
+                <option value="bn" className="bg-gray-800">বাংলা (Bengali)</option>
+                <option value="te" className="bg-gray-800">తెలుగు (Telugu)</option>
+                <option value="mr" className="bg-gray-800">मराठी (Marathi)</option>
+                <option value="ta" className="bg-gray-800">தமிழ் (Tamil)</option>
+                <option value="gu" className="bg-gray-800">ગુજરાતી (Gujarati)</option>
+                <option value="kn" className="bg-gray-800">ಕನ್ನಡ (Kannada)</option>
+                <option value="ml" className="bg-gray-800">മലയാളം (Malayalam)</option>
+                <option value="pa" className="bg-gray-800">ਪੰਜਾਬੀ (Punjabi)</option>
+                <option value="or" className="bg-gray-800">ଓଡ଼ିଆ (Odia)</option>
+                <option value="as" className="bg-gray-800">অসমীয়া (Assamese)</option>
                 <option value="es" className="bg-gray-800">Español</option>
                 <option value="fr" className="bg-gray-800">Français</option>
                 <option value="de" className="bg-gray-800">Deutsch</option>

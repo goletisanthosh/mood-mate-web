@@ -36,13 +36,13 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
             </button>
             
             {isMenuOpen && (
-              <div className="absolute right-0 top-12 glass rounded-lg p-4 min-w-48 z-10 slide-up">
-                <div className="text-white/90 mb-3 pb-2 border-b border-white/20">
+              <div className="absolute right-0 top-12 bg-white/95 backdrop-blur-md rounded-lg p-4 min-w-48 z-50 slide-up shadow-xl border border-white/20">
+                <div className="text-gray-800 mb-3 pb-2 border-b border-gray-200">
                   Welcome, {user.name}!
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-3 py-2 text-white hover:bg-white/20 rounded-lg transition-all duration-300"
+                  className="w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-300"
                 >
                   Logout
                 </button>

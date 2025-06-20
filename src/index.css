@@ -56,7 +56,11 @@
 }
 
 .clear-night-bg {
-  @apply bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700;
+  @apply bg-gradient-to-br from-indigo-900 via-purple-900 to-black;
+}
+
+.night-bg {
+  @apply bg-gradient-to-br from-slate-800 via-slate-900 to-black;
 }
 
 /* Glassmorphism effect */

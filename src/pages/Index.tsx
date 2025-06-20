@@ -26,7 +26,16 @@ const Index = () => {
     // Update background based on weather
     if (weather) {
       const condition = weather.condition.toLowerCase();
-      if (condition.includes('sun') || condition.includes('clear')) {
+      const currentHour = new Date().getHours();
+      const isNight = currentHour < 6 || currentHour > 19;
+      
+      if (isNight) {
+        if (condition.includes('clear')) {
+          setBackgroundClass('clear-night-bg');
+        } else {
+          setBackgroundClass('night-bg');
+        }
+      } else if (condition.includes('sun') || condition.includes('clear')) {
         setBackgroundClass('sunny-bg');
       } else if (condition.includes('rain') || condition.includes('storm')) {
         setBackgroundClass('rainy-bg');
