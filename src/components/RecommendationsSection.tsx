@@ -38,38 +38,19 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
               <div className="flex-1">
                 <h4 className="font-semibold text-white">{song.title}</h4>
                 <p className="text-white/70">{song.artist}</p>
-                <span className="inline-block px-2 py-1 bg-white/20 text-white/80 text-xs rounded-full">
-                  {song.genre}
-                </span>
+                <div className="flex items-center space-x-2 mt-1">
+                  <span className="inline-block px-2 py-1 bg-white/20 text-white/80 text-xs rounded-full">
+                    {song.genre}
+                  </span>
+                  <span className="text-white/60 text-xs">Perfect for {recommendations.mood.toLowerCase()} mood</span>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Stays Recommendations - Second */}
-      <div className="glass rounded-xl p-6 slide-up hover-glow">
-        <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-          🏨 Stay Recommendations
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {recommendations.stays.map((stay, index) => (
-            <div
-              key={index}
-              className="bg-white/10 rounded-lg p-4 hover-lift transition-all duration-300"
-            >
-              <div className="text-3xl mb-2">{stay.image}</div>
-              <h4 className="font-semibold text-white mb-1">{stay.name}</h4>
-              <p className="text-white/70 text-sm mb-2">{stay.description}</p>
-              <span className="inline-block px-2 py-1 bg-white/20 text-white/80 text-xs rounded-full">
-                {stay.type}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Food Recommendations - Third */}
+      {/* Food Recommendations - Second */}
       <div className="glass rounded-xl p-6 slide-up hover-glow">
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
           🍽️ Food Recommendations
@@ -83,9 +64,41 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
               <div className="text-3xl mb-2">{food.image}</div>
               <h4 className="font-semibold text-white mb-1">{food.name}</h4>
               <p className="text-white/70 text-sm mb-2">{food.description}</p>
-              <span className="inline-block px-2 py-1 bg-white/20 text-white/80 text-xs rounded-full">
-                {food.type}
-              </span>
+              <div className="flex flex-wrap gap-1">
+                <span className="inline-block px-2 py-1 bg-white/20 text-white/80 text-xs rounded-full">
+                  {food.type}
+                </span>
+                <span className="inline-block px-2 py-1 bg-blue-500/30 text-white/80 text-xs rounded-full">
+                  Mood Booster
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Stays Recommendations - Third */}
+      <div className="glass rounded-xl p-6 slide-up hover-glow">
+        <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
+          🏨 Stay Recommendations
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {recommendations.stays.map((stay, index) => (
+            <div
+              key={index}
+              className="bg-white/10 rounded-lg p-4 hover-lift transition-all duration-300"
+            >
+              <div className="text-3xl mb-2">{stay.image}</div>
+              <h4 className="font-semibold text-white mb-1">{stay.name}</h4>
+              <p className="text-white/70 text-sm mb-2">{stay.description}</p>
+              <div className="flex flex-wrap gap-1">
+                <span className="inline-block px-2 py-1 bg-white/20 text-white/80 text-xs rounded-full">
+                  {stay.type}
+                </span>
+                <span className="inline-block px-2 py-1 bg-green-500/30 text-white/80 text-xs rounded-full">
+                  Weather Perfect
+                </span>
+              </div>
             </div>
           ))}
         </div>

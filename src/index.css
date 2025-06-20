@@ -105,3 +105,12 @@
 .hover-glow {
   @apply transition-all duration-300 hover:shadow-lg hover:shadow-white/25;
 }
+
+/* Z-index utilities for proper layering */
+.z-dropdown {
+  z-index: 100;
+}
+
+.z-modal {
+  z-index: 200;
+}
