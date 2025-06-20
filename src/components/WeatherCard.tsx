@@ -10,7 +10,6 @@ interface WeatherCardProps {
 const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
-  const [cityInput, setCityInput] = useState('');
 
   useEffect(() => {
     loadCurrentLocationWeather();
@@ -29,22 +28,6 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
     }
   };
 
-  const loadCityWeather = async () => {
-    if (!cityInput.trim()) return;
-    
-    setLoading(true);
-    try {
-      const weatherData = await WeatherService.getWeatherByCity(cityInput);
-      setWeather(weatherData);
-      onWeatherUpdate(weatherData);
-      setCityInput('');
-    } catch (error) {
-      console.error('Error loading city weather:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   if (loading) {
     return (
       <div className="glass rounded-xl p-6 text-center slide-up">
@@ -56,25 +39,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
 
   return (
     <div className="glass rounded-xl p-6 slide-up hover-glow">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
-        <h2 className="text-xl font-semibold text-white mb-2 sm:mb-0">Current Weather</h2>
-        <div className="flex space-x-2 w-full sm:w-auto">
-          <input
-            type="text"
-            value={cityInput}
-            onChange={(e) => setCityInput(e.target.value)}
-            placeholder="Enter city name"
-            className="px-3 py-2 rounded-lg bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 flex-1 sm:flex-none"
-            onKeyPress={(e) => e.key === 'Enter' && loadCityWeather()}
-          />
-          <button
-            onClick={loadCityWeather}
-            className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition-all duration-300 hover-lift whitespace-nowrap"
-          >
-            Search
-          </button>
-        </div>
-      </div>
+      <h2 className="text-xl font-semibold text-white mb-4">Current Weather</h2>
 
       {weather && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
