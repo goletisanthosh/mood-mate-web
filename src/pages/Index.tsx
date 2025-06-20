@@ -85,7 +85,7 @@ const Index = () => {
         
         <footer className="mt-12 text-center">
           <p className="text-white/60 text-sm">
-            Made with ❤️ by Mood Mate • Weather-powered recommendations
+            Made with 🤍 by Santhosh Goleti • Weather-powered recommendations
           </p>
         </footer>
       </div>
