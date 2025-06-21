@@ -55,25 +55,31 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
           🍽️ Food Recommendations
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {recommendations.foods.map((food, index) => (
-            <div
-              key={index}
-              className="bg-white/10 rounded-lg p-4 hover-lift transition-all duration-300"
-            >
-              <div className="text-4xl mb-3 text-center">{food.image}</div>
-              <h4 className="font-semibold text-white mb-2 text-center">{food.name}</h4>
-              <p className="text-white/70 text-sm mb-3 text-center">{food.description}</p>
-              <div className="flex flex-wrap gap-2 justify-center">
-                <span className="inline-block px-3 py-1 bg-white/20 text-white/80 text-xs rounded-full">
-                  {food.type}
-                </span>
-                <span className="inline-block px-3 py-1 bg-orange-500/30 text-white/80 text-xs rounded-full">
-                  Mood Perfect
-                </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {recommendations.foods && recommendations.foods.length > 0 ? (
+            recommendations.foods.map((food, index) => (
+              <div
+                key={index}
+                className="bg-white/15 rounded-lg p-6 hover-lift transition-all duration-300 border border-white/10"
+              >
+                <div className="text-5xl mb-4 text-center">{food.image}</div>
+                <h4 className="font-bold text-white mb-3 text-center text-lg">{food.name}</h4>
+                <p className="text-white/80 text-sm mb-4 text-center leading-relaxed">{food.description}</p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  <span className="inline-block px-3 py-1 bg-white/25 text-white text-xs rounded-full font-medium">
+                    {food.type}
+                  </span>
+                  <span className="inline-block px-3 py-1 bg-orange-500/40 text-white text-xs rounded-full font-medium">
+                    Mood Perfect
+                  </span>
+                </div>
               </div>
+            ))
+          ) : (
+            <div className="col-span-full text-center text-white/70">
+              No food recommendations available
             </div>
-          ))}
+          )}
         </div>
       </div>
 
@@ -82,25 +88,31 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
           🏨 Stay Recommendations
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {recommendations.stays.map((stay, index) => (
-            <div
-              key={index}
-              className="bg-white/10 rounded-lg p-4 hover-lift transition-all duration-300"
-            >
-              <div className="text-4xl mb-3 text-center">{stay.image}</div>
-              <h4 className="font-semibold text-white mb-2 text-center">{stay.name}</h4>
-              <p className="text-white/70 text-sm mb-3 text-center">{stay.description}</p>
-              <div className="flex flex-wrap gap-2 justify-center">
-                <span className="inline-block px-3 py-1 bg-white/20 text-white/80 text-xs rounded-full">
-                  {stay.type}
-                </span>
-                <span className="inline-block px-3 py-1 bg-blue-500/30 text-white/80 text-xs rounded-full">
-                  Weather Perfect
-                </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {recommendations.stays && recommendations.stays.length > 0 ? (
+            recommendations.stays.map((stay, index) => (
+              <div
+                key={index}
+                className="bg-white/15 rounded-lg p-6 hover-lift transition-all duration-300 border border-white/10"
+              >
+                <div className="text-5xl mb-4 text-center">{stay.image}</div>
+                <h4 className="font-bold text-white mb-3 text-center text-lg">{stay.name}</h4>
+                <p className="text-white/80 text-sm mb-4 text-center leading-relaxed">{stay.description}</p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  <span className="inline-block px-3 py-1 bg-white/25 text-white text-xs rounded-full font-medium">
+                    {stay.type}
+                  </span>
+                  <span className="inline-block px-3 py-1 bg-blue-500/40 text-white text-xs rounded-full font-medium">
+                    Weather Perfect
+                  </span>
+                </div>
               </div>
+            ))
+          ) : (
+            <div className="col-span-full text-center text-white/70">
+              No stay recommendations available
             </div>
-          ))}
+            )}
         </div>
       </div>
     </div>
