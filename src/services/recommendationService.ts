@@ -9,14 +9,15 @@ export class RecommendationService {
     { name: "Smoothie", description: "A blended beverage", type: "Healthy", image: "🥤", mood: ["energetic", "healthy", "refreshing"] },
 
     // Rainy weather foods
-    { name: "Hot Soup", description: "A warm and comforting dish", type: "Comfort", image: "🍜", mood: ["cozy", "contemplative", "comforting"] },
-    { name: "Hot Chocolate", description: "A sweet, chocolatey beverage", type: "Comfort", image: "☕", mood: ["cozy", "romantic", "comforting"] },
-    { name: "Grilled Cheese", description: "A classic comfort food", type: "Comfort", image: "🧀", mood: ["cozy", "comforting", "relaxed"] },
+    { name: "Hot Soup", description: "A warm and comforting dish", type: "Comfort", image: "🍜", mood: ["cozy", "contemplative", "comforting", "sad"] },
+    { name: "Hot Chocolate", description: "A sweet, chocolatey beverage", type: "Comfort", image: "☕", mood: ["cozy", "romantic", "comforting", "sad"] },
+    { name: "Grilled Cheese", description: "A classic comfort food", type: "Comfort", image: "🧀", mood: ["cozy", "comforting", "relaxed", "sad"] },
 
     // Cloudy weather foods
     { name: "Pizza", description: "A savory dish with toppings", type: "Savory", image: "🍕", mood: ["calm", "creative", "inspiring", "social"] },
     { name: "Burger", description: "A classic American dish", type: "Savory", image: "🍔", mood: ["calm", "social", "casual", "comforting"] },
     { name: "Tacos", description: "A Mexican dish with fillings", type: "Savory", image: "🌮", mood: ["calm", "social", "spicy", "adventurous"] },
+    { name: "Pasta", description: "Italian comfort food", type: "Comfort", image: "🍝", mood: ["calm", "comforting", "satisfying"] },
 
     // Snowy weather foods
     { name: "Chili", description: "A hearty and spicy stew", type: "Comfort", image: "🌶️", mood: ["adventurous", "cozy", "comforting"] },
@@ -53,9 +54,9 @@ export class RecommendationService {
     { name: "Garden Villa", description: "Private villa with beautiful gardens", type: "Villa", image: "🌺", mood: ["happy", "romantic", "serene"] },
     
     // Rainy weather stays
-    { name: "Cozy Inn", description: "Warm fireplace and hot beverages", type: "Inn", image: "🔥", mood: ["cozy", "contemplative", "romantic"] },
-    { name: "Spa Retreat", description: "Indoor wellness and relaxation", type: "Spa", image: "🧘", mood: ["relaxed", "peaceful", "rejuvenating"] },
-    { name: "Library Hotel", description: "Book-filled rooms for reading", type: "Hotel", image: "📚", mood: ["contemplative", "cozy", "intellectual"] },
+    { name: "Cozy Inn", description: "Warm fireplace and hot beverages", type: "Inn", image: "🔥", mood: ["cozy", "contemplative", "romantic", "sad"] },
+    { name: "Spa Retreat", description: "Indoor wellness and relaxation", type: "Spa", image: "🧘", mood: ["relaxed", "peaceful", "rejuvenating", "sad"] },
+    { name: "Library Hotel", description: "Book-filled rooms for reading", type: "Hotel", image: "📚", mood: ["contemplative", "cozy", "intellectual", "sad"] },
     
     // Cloudy weather stays
     { name: "Art Gallery Hotel", description: "Creative spaces and exhibitions", type: "Boutique", image: "🎨", mood: ["calm", "creative", "inspiring", "cultured"] },
@@ -80,7 +81,7 @@ export class RecommendationService {
     } else if (weather.condition.toLowerCase().includes('snow')) {
       mood = 'cozy';
     } else {
-      mood = 'calm'; // Default to calm instead of happy for better fallback
+      mood = 'calm';
     }
 
     console.log('Weather condition:', weather.condition);
