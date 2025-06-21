@@ -7,6 +7,8 @@ interface RecommendationsSectionProps {
 }
 
 const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recommendations }) => {
+  console.log('RecommendationsSection received:', recommendations);
+
   if (!recommendations) {
     return (
       <div className="glass rounded-xl p-6 text-center">
@@ -55,29 +57,30 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
           🍽️ Food Recommendations
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {recommendations.foods && recommendations.foods.length > 0 ? (
             recommendations.foods.map((food, index) => (
               <div
                 key={index}
-                className="bg-white/15 rounded-lg p-6 hover-lift transition-all duration-300 border border-white/10"
+                className="bg-white/15 rounded-lg p-4 hover-lift transition-all duration-300 border border-white/10 text-center"
               >
-                <div className="text-5xl mb-4 text-center">{food.image}</div>
-                <h4 className="font-bold text-white mb-3 text-center text-lg">{food.name}</h4>
-                <p className="text-white/80 text-sm mb-4 text-center leading-relaxed">{food.description}</p>
+                <div className="text-4xl mb-3">{food.image}</div>
+                <h4 className="font-bold text-white mb-2 text-lg">{food.name}</h4>
+                <p className="text-white/80 text-sm mb-3 leading-relaxed">{food.description}</p>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="inline-block px-3 py-1 bg-white/25 text-white text-xs rounded-full font-medium">
+                  <span className="inline-block px-2 py-1 bg-white/25 text-white text-xs rounded-full font-medium">
                     {food.type}
                   </span>
-                  <span className="inline-block px-3 py-1 bg-orange-500/40 text-white text-xs rounded-full font-medium">
+                  <span className="inline-block px-2 py-1 bg-orange-500/40 text-white text-xs rounded-full font-medium">
                     Mood Perfect
                   </span>
                 </div>
               </div>
             ))
           ) : (
-            <div className="col-span-full text-center text-white/70">
-              No food recommendations available
+            <div className="col-span-full text-center text-white/70 py-8">
+              <div className="text-4xl mb-2">🍽️</div>
+              <p>No food recommendations available for {recommendations.mood.toLowerCase()} mood</p>
             </div>
           )}
         </div>
@@ -88,31 +91,32 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
           🏨 Stay Recommendations
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {recommendations.stays && recommendations.stays.length > 0 ? (
             recommendations.stays.map((stay, index) => (
               <div
                 key={index}
-                className="bg-white/15 rounded-lg p-6 hover-lift transition-all duration-300 border border-white/10"
+                className="bg-white/15 rounded-lg p-4 hover-lift transition-all duration-300 border border-white/10 text-center"
               >
-                <div className="text-5xl mb-4 text-center">{stay.image}</div>
-                <h4 className="font-bold text-white mb-3 text-center text-lg">{stay.name}</h4>
-                <p className="text-white/80 text-sm mb-4 text-center leading-relaxed">{stay.description}</p>
+                <div className="text-4xl mb-3">{stay.image}</div>
+                <h4 className="font-bold text-white mb-2 text-lg">{stay.name}</h4>
+                <p className="text-white/80 text-sm mb-3 leading-relaxed">{stay.description}</p>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="inline-block px-3 py-1 bg-white/25 text-white text-xs rounded-full font-medium">
+                  <span className="inline-block px-2 py-1 bg-white/25 text-white text-xs rounded-full font-medium">
                     {stay.type}
                   </span>
-                  <span className="inline-block px-3 py-1 bg-blue-500/40 text-white text-xs rounded-full font-medium">
+                  <span className="inline-block px-2 py-1 bg-blue-500/40 text-white text-xs rounded-full font-medium">
                     Weather Perfect
                   </span>
                 </div>
               </div>
             ))
           ) : (
-            <div className="col-span-full text-center text-white/70">
-              No stay recommendations available
+            <div className="col-span-full text-center text-white/70 py-8">
+              <div className="text-4xl mb-2">🏨</div>
+              <p>No stay recommendations available for {recommendations.mood.toLowerCase()} mood</p>
             </div>
-            )}
+          )}
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+
 import { WeatherData, MoodRecommendations, FoodRecommendation, MusicRecommendation, StayRecommendation } from '../types';
 
 export class RecommendationService {
@@ -13,9 +14,9 @@ export class RecommendationService {
     { name: "Grilled Cheese", description: "A classic comfort food", type: "Comfort", image: "🧀", mood: ["cozy", "comforting", "relaxed"] },
 
     // Cloudy weather foods
-    { name: "Pizza", description: "A savory dish with toppings", type: "Savory", image: "🍕", mood: ["creative", "inspiring", "social"] },
-    { name: "Burger", description: "A classic American dish", type: "Savory", image: "🍔", mood: ["social", "casual", "comforting"] },
-    { name: "Tacos", description: "A Mexican dish with fillings", type: "Savory", image: "🌮", mood: ["social", "spicy", "adventurous"] },
+    { name: "Pizza", description: "A savory dish with toppings", type: "Savory", image: "🍕", mood: ["calm", "creative", "inspiring", "social"] },
+    { name: "Burger", description: "A classic American dish", type: "Savory", image: "🍔", mood: ["calm", "social", "casual", "comforting"] },
+    { name: "Tacos", description: "A Mexican dish with fillings", type: "Savory", image: "🌮", mood: ["calm", "social", "spicy", "adventurous"] },
 
     // Snowy weather foods
     { name: "Chili", description: "A hearty and spicy stew", type: "Comfort", image: "🌶️", mood: ["adventurous", "cozy", "comforting"] },
@@ -57,9 +58,9 @@ export class RecommendationService {
     { name: "Library Hotel", description: "Book-filled rooms for reading", type: "Hotel", image: "📚", mood: ["contemplative", "cozy", "intellectual"] },
     
     // Cloudy weather stays
-    { name: "Art Gallery Hotel", description: "Creative spaces and exhibitions", type: "Boutique", image: "🎨", mood: ["creative", "inspiring", "cultured"] },
-    { name: "City Loft", description: "Modern urban accommodation", type: "Loft", image: "🏙️", mood: ["sophisticated", "convenient", "trendy"] },
-    { name: "Countryside B&B", description: "Peaceful rural experience", type: "B&B", image: "🌾", mood: ["peaceful", "authentic", "charming"] },
+    { name: "Art Gallery Hotel", description: "Creative spaces and exhibitions", type: "Boutique", image: "🎨", mood: ["calm", "creative", "inspiring", "cultured"] },
+    { name: "City Loft", description: "Modern urban accommodation", type: "Loft", image: "🏙️", mood: ["calm", "sophisticated", "convenient", "trendy"] },
+    { name: "Countryside B&B", description: "Peaceful rural experience", type: "B&B", image: "🌾", mood: ["calm", "peaceful", "authentic", "charming"] },
     
     // Snowy weather stays
     { name: "Ski Lodge", description: "Alpine comfort with winter sports", type: "Lodge", image: "⛷️", mood: ["adventurous", "cozy", "festive"] },
@@ -79,8 +80,11 @@ export class RecommendationService {
     } else if (weather.condition.toLowerCase().includes('snow')) {
       mood = 'cozy';
     } else {
-      mood = 'happy';
+      mood = 'calm'; // Default to calm instead of happy for better fallback
     }
+
+    console.log('Weather condition:', weather.condition);
+    console.log('Determined mood:', mood);
     
     // Filter recommendations based on mood
     const foods = this.foodRecommendations.filter(food => 
@@ -94,6 +98,9 @@ export class RecommendationService {
     const stays = this.stayRecommendations.filter(stay => 
       stay.mood.includes(mood)
     ).slice(0, 3);
+
+    console.log('Filtered foods:', foods);
+    console.log('Filtered stays:', stays);
 
     return {
       mood: this.getMoodDisplayName(mood),
@@ -114,7 +121,7 @@ export class RecommendationService {
       case 'cozy':
         return 'Cozy';
       default:
-        return 'Happy';
+        return 'Calm';
     }
   }
 }
