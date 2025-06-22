@@ -1,8 +1,8 @@
 
 import { WeatherData } from '../types';
 
-// Using OpenWeatherMap API (free tier)
-const API_KEY = 'demo_key'; // Users will need to get their own key
+// Using OpenWeatherMap API with your provided key
+const API_KEY = '716e02c95b29ff76212e39800512e9fa';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 export class WeatherService {

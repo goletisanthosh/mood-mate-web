@@ -1,72 +1,71 @@
-
 import { WeatherData, MoodRecommendations, FoodRecommendation, MusicRecommendation, StayRecommendation } from '../types';
 
 export class RecommendationService {
   private static foodRecommendations: FoodRecommendation[] = [
-    // Sunny/Clear weather foods
-    { name: "Ice Cream", description: "A sweet, frozen treat", type: "Dessert", image: "🍦", mood: ["happy", "energetic", "relaxed"] },
-    { name: "Salad", description: "A refreshing mix of greens", type: "Healthy", image: "🥗", mood: ["happy", "relaxed", "healthy"] },
-    { name: "Smoothie", description: "A blended beverage", type: "Healthy", image: "🥤", mood: ["energetic", "healthy", "refreshing"] },
+    // Sunny/Clear weather foods - Indian options
+    { name: "Kulfi", description: "Traditional Indian frozen dessert", type: "Dessert", image: "🍦", mood: ["happy", "energetic", "relaxed"] },
+    { name: "Fruit Chaat", description: "Spicy mixed fruit salad", type: "Healthy", image: "🥗", mood: ["happy", "relaxed", "healthy"] },
+    { name: "Lassi", description: "Refreshing yogurt-based drink", type: "Healthy", image: "🥤", mood: ["energetic", "healthy", "refreshing"] },
 
-    // Rainy weather foods
-    { name: "Hot Soup", description: "A warm and comforting dish", type: "Comfort", image: "🍜", mood: ["cozy", "contemplative", "comforting", "sad"] },
-    { name: "Hot Chocolate", description: "A sweet, chocolatey beverage", type: "Comfort", image: "☕", mood: ["cozy", "romantic", "comforting", "sad"] },
-    { name: "Grilled Cheese", description: "A classic comfort food", type: "Comfort", image: "🧀", mood: ["cozy", "comforting", "relaxed", "sad"] },
+    // Rainy weather foods - Indian comfort foods
+    { name: "Masala Chai", description: "Spiced Indian tea", type: "Comfort", image: "☕", mood: ["cozy", "contemplative", "comforting", "sad"] },
+    { name: "Pakoras", description: "Crispy fried fritters", type: "Comfort", image: "🥟", mood: ["cozy", "romantic", "comforting", "sad"] },
+    { name: "Khichdi", description: "Comforting rice and lentil dish", type: "Comfort", image: "🍚", mood: ["cozy", "comforting", "relaxed", "sad"] },
 
-    // Cloudy weather foods
-    { name: "Pizza", description: "A savory dish with toppings", type: "Savory", image: "🍕", mood: ["calm", "creative", "inspiring", "social"] },
-    { name: "Burger", description: "A classic American dish", type: "Savory", image: "🍔", mood: ["calm", "social", "casual", "comforting"] },
-    { name: "Tacos", description: "A Mexican dish with fillings", type: "Savory", image: "🌮", mood: ["calm", "social", "spicy", "adventurous"] },
-    { name: "Pasta", description: "Italian comfort food", type: "Comfort", image: "🍝", mood: ["calm", "comforting", "satisfying"] },
+    // Cloudy weather foods - Indian savory items
+    { name: "Samosa", description: "Crispy triangular pastry with filling", type: "Savory", image: "🥟", mood: ["calm", "creative", "inspiring", "social"] },
+    { name: "Chai & Biscuits", description: "Tea with Indian cookies", type: "Savory", image: "🍪", mood: ["calm", "social", "casual", "comforting"] },
+    { name: "Dosa", description: "South Indian crepe with chutney", type: "Savory", image: "🥞", mood: ["calm", "social", "spicy", "adventurous"] },
+    { name: "Biryani", description: "Aromatic rice dish with spices", type: "Comfort", image: "🍚", mood: ["calm", "comforting", "satisfying"] },
 
-    // Snowy weather foods
-    { name: "Chili", description: "A hearty and spicy stew", type: "Comfort", image: "🌶️", mood: ["adventurous", "cozy", "comforting"] },
-    { name: "Stew", description: "A slow-cooked dish with meat and vegetables", type: "Comfort", image: "🍲", mood: ["cozy", "comforting", "warm"] },
-    { name: "Apple Pie", description: "A sweet and warm dessert", type: "Dessert", image: "🍎", mood: ["cozy", "comforting", "sweet"] }
+    // Snowy weather foods - Indian winter foods
+    { name: "Gajar Halwa", description: "Sweet carrot dessert", type: "Comfort", image: "🥕", mood: ["adventurous", "cozy", "comforting"] },
+    { name: "Rajma Chawal", description: "Kidney beans with rice", type: "Comfort", image: "🍛", mood: ["cozy", "comforting", "warm"] },
+    { name: "Gulab Jamun", description: "Sweet milk dumplings in syrup", type: "Dessert", image: "🍯", mood: ["cozy", "comforting", "sweet"] }
   ];
 
   private static musicRecommendations: MusicRecommendation[] = [
-    // Sunny/Clear weather music
-    { title: "Walking on Sunshine", artist: "Katrina & The Waves", genre: "Pop", mood: ["happy", "energetic"] },
-    { title: "Here Comes the Sun", artist: "The Beatles", genre: "Rock", mood: ["happy", "relaxed"] },
-    { title: "Lovely Day", artist: "Bill Withers", genre: "Soul", mood: ["happy", "relaxed"] },
+    // Sunny/Clear weather music - Telugu & Indian
+    { title: "Butta Bomma", artist: "Armaan Malik", genre: "Telugu Pop", mood: ["happy", "energetic"], spotify_url: "https://open.spotify.com/track/example1" },
+    { title: "Inkem Inkem", artist: "Sid Sriram", genre: "Telugu Melody", mood: ["happy", "relaxed"], spotify_url: "https://open.spotify.com/track/example2" },
+    { title: "Samajavaragamana", artist: "Sid Sriram", genre: "Telugu Classical", mood: ["happy", "relaxed"], spotify_url: "https://open.spotify.com/track/example3" },
 
-    // Rainy weather music
-    { title: "Rainy Days and Mondays", artist: "The Carpenters", genre: "Pop", mood: ["sad", "contemplative"] },
-    { title: "Riders on the Storm", artist: "The Doors", genre: "Rock", mood: ["sad", "contemplative"] },
-    { title: "Have You Ever Seen The Rain?", artist: "Creedence Clearwater Revival", genre: "Rock", mood: ["sad", "contemplative"] },
+    // Rainy weather music - Telugu emotional
+    { title: "Vachinde", artist: "Madhu Priya", genre: "Telugu Folk", mood: ["sad", "contemplative"], spotify_url: "https://open.spotify.com/track/example4" },
+    { title: "Maate Vinadhuga", artist: "Sid Sriram", genre: "Telugu Melody", mood: ["sad", "contemplative"], spotify_url: "https://open.spotify.com/track/example5" },
+    { title: "Kannu Kottina", artist: "Various Artists", genre: "Telugu Classical", mood: ["sad", "contemplative"], spotify_url: "https://open.spotify.com/track/example6" },
 
-    // Cloudy weather music
-    { title: "Cloudy", artist: "Simon & Garfunkel", genre: "Folk", mood: ["calm", "contemplative"] },
-    { title: "A Sky Full of Stars", artist: "Coldplay", genre: "Pop", mood: ["calm", "inspiring"] },
-    { title: "Thunder", artist: "Imagine Dragons", genre: "Rock", mood: ["calm", "inspiring"] },
+    // Cloudy weather music - Telugu calm
+    { title: "Ramuloo Ramulaa", artist: "Anurag Kulkarni", genre: "Telugu Pop", mood: ["calm", "contemplative"], spotify_url: "https://open.spotify.com/track/example7" },
+    { title: "Kadalalle", artist: "Haricharan", genre: "Telugu Melody", mood: ["calm", "inspiring"], spotify_url: "https://open.spotify.com/track/example8" },
+    { title: "Yenti Yenti", artist: "Chinmayi", genre: "Telugu Pop", mood: ["calm", "inspiring"], spotify_url: "https://open.spotify.com/track/example9" },
 
-    // Snowy weather music
-    { title: "Let It Snow! Let It Snow! Let It Snow!", artist: "Dean Martin", genre: "Jazz", mood: ["cozy", "festive"] },
-    { title: "Winter Wonderland", artist: "Ella Fitzgerald", genre: "Jazz", mood: ["cozy", "festive"] },
-    { title: "White Christmas", artist: "Bing Crosby", genre: "Pop", mood: ["cozy", "festive"] }
+    // Snowy weather music - Telugu festive
+    { title: "Dandaalayyaa", artist: "Dhanunjay", genre: "Telugu Folk", mood: ["cozy", "festive"], spotify_url: "https://open.spotify.com/track/example10" },
+    { title: "Magajaathi", artist: "Yazin Nizar", genre: "Telugu Pop", mood: ["cozy", "festive"], spotify_url: "https://open.spotify.com/track/example11" },
+    { title: "Pacha Bottesina", artist: "Javed Ali", genre: "Telugu Melody", mood: ["cozy", "festive"], spotify_url: "https://open.spotify.com/track/example12" }
   ];
 
   private static stayRecommendations: StayRecommendation[] = [
-    // Sunny/Clear weather stays
-    { name: "Beach Resort", description: "Oceanfront luxury with water sports", type: "Resort", image: "🏖️", mood: ["happy", "energetic", "relaxed"] },
-    { name: "Mountain Cabin", description: "Scenic views with hiking trails", type: "Cabin", image: "🏔️", mood: ["happy", "adventurous", "peaceful"] },
-    { name: "Garden Villa", description: "Private villa with beautiful gardens", type: "Villa", image: "🌺", mood: ["happy", "romantic", "serene"] },
+    // Sunny/Clear weather stays - Indian locations
+    { name: "Goa Beach Resort", description: "Beachfront stay with water sports", type: "Resort", image: "🏖️", mood: ["happy", "energetic", "relaxed"] },
+    { name: "Himalayan Retreat", description: "Mountain stay with trekking", type: "Resort", image: "🏔️", mood: ["happy", "adventurous", "peaceful"] },
+    { name: "Kerala Backwaters", description: "Houseboat stay in serene waters", type: "Houseboat", image: "🛥️", mood: ["happy", "romantic", "serene"] },
     
-    // Rainy weather stays
-    { name: "Cozy Inn", description: "Warm fireplace and hot beverages", type: "Inn", image: "🔥", mood: ["cozy", "contemplative", "romantic", "sad"] },
-    { name: "Spa Retreat", description: "Indoor wellness and relaxation", type: "Spa", image: "🧘", mood: ["relaxed", "peaceful", "rejuvenating", "sad"] },
-    { name: "Library Hotel", description: "Book-filled rooms for reading", type: "Hotel", image: "📚", mood: ["contemplative", "cozy", "intellectual", "sad"] },
+    // Rainy weather stays - Indian cozy options
+    { name: "Coorg Coffee Estate", description: "Stay amidst coffee plantations", type: "Homestay", image: "☕", mood: ["cozy", "contemplative", "romantic", "sad"] },
+    { name: "Ayurvedic Spa Resort", description: "Traditional wellness retreat", type: "Spa", image: "🧘", mood: ["relaxed", "peaceful", "rejuvenating", "sad"] },
+    { name: "Heritage Haveli", description: "Traditional Indian palace hotel", type: "Heritage", image: "🏰", mood: ["contemplative", "cozy", "cultural", "sad"] },
     
-    // Cloudy weather stays
-    { name: "Art Gallery Hotel", description: "Creative spaces and exhibitions", type: "Boutique", image: "🎨", mood: ["calm", "creative", "inspiring", "cultured"] },
-    { name: "City Loft", description: "Modern urban accommodation", type: "Loft", image: "🏙️", mood: ["calm", "sophisticated", "convenient", "trendy"] },
-    { name: "Countryside B&B", description: "Peaceful rural experience", type: "B&B", image: "🌾", mood: ["calm", "peaceful", "authentic", "charming"] },
+    // Cloudy weather stays - Indian cultural
+    { name: "Rajasthan Palace Hotel", description: "Royal experience in desert state", type: "Palace", image: "🏛️", mood: ["calm", "creative", "inspiring", "cultured"] },
+    { name: "Mumbai Boutique Hotel", description: "Modern stay in bustling city", type: "Boutique", image: "🏙️", mood: ["calm", "sophisticated", "convenient", "trendy"] },
+    { name: "Tamil Nadu Temple Town", description: "Stay near ancient temples", type: "Guesthouse", image: "🕉️", mood: ["calm", "peaceful", "spiritual", "authentic"] },
     
-    // Snowy weather stays
-    { name: "Ski Lodge", description: "Alpine comfort with winter sports", type: "Lodge", image: "⛷️", mood: ["adventurous", "cozy", "festive"] },
-    { name: "Ice Hotel", description: "Unique frozen architecture", type: "Specialty", image: "❄️", mood: ["adventurous", "unique", "memorable"] },
-    { name: "Thermal Springs Resort", description: "Hot springs in snowy landscape", type: "Resort", image: "♨️", mood: ["relaxed", "rejuvenating", "magical"] }
+    // Snowy weather stays - Indian hill stations
+    { name: "Manali Snow Resort", description: "Alpine comfort with snow activities", type: "Resort", image: "⛷️", mood: ["adventurous", "cozy", "festive"] },
+    { name: "Shimla Heritage Hotel", description: "Colonial charm in hill station", type: "Heritage", image: "🏔️", mood: ["adventurous", "nostalgic", "cozy"] },
+    { name: "Kashmir Houseboat", description: "Floating stay on Dal Lake", type: "Houseboat", image: "🛥️", mood: ["relaxed", "unique", "magical"] }
   ];
 
   static getRecommendations(weather: WeatherData): MoodRecommendations {

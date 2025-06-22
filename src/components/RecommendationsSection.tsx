@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { MoodRecommendations } from '../types';
+import MusicPlayer from './MusicPlayer';
 
 interface RecommendationsSectionProps {
   recommendations: MoodRecommendations | null;
@@ -25,37 +26,18 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
         <p className="text-xl text-white/90">{recommendations.mood}</p>
       </div>
 
-      {/* Music Recommendations - First */}
+      {/* Music Recommendations with Player - First */}
       <div className="glass rounded-xl p-6 slide-up hover-glow">
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-          🎵 Music Recommendations
+          🎵 Telugu Music Recommendations
         </h3>
-        <div className="space-y-3">
-          {recommendations.music.map((song, index) => (
-            <div
-              key={index}
-              className="bg-white/10 rounded-lg p-4 hover-lift transition-all duration-300 flex items-center space-x-4"
-            >
-              <div className="text-2xl">🎶</div>
-              <div className="flex-1">
-                <h4 className="font-semibold text-white">{song.title}</h4>
-                <p className="text-white/70">{song.artist}</p>
-                <div className="flex items-center space-x-2 mt-1">
-                  <span className="inline-block px-2 py-1 bg-white/20 text-white/80 text-xs rounded-full">
-                    {song.genre}
-                  </span>
-                  <span className="text-white/60 text-xs">Perfect for {recommendations.mood.toLowerCase()} mood</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <MusicPlayer songs={recommendations.music} />
       </div>
 
       {/* Food Recommendations - Second */}
       <div className="glass rounded-xl p-6 slide-up hover-glow">
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-          🍽️ Food Recommendations
+          🍽️ Indian Food Recommendations
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {recommendations.foods && recommendations.foods.length > 0 ? (
@@ -72,7 +54,7 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
                     {food.type}
                   </span>
                   <span className="inline-block px-2 py-1 bg-orange-500/40 text-white text-xs rounded-full font-medium">
-                    Mood Perfect
+                    Indian Cuisine
                   </span>
                 </div>
               </div>
@@ -89,7 +71,7 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
       {/* Stays Recommendations - Third */}
       <div className="glass rounded-xl p-6 slide-up hover-glow">
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-          🏨 Stay Recommendations
+          🏨 Indian Stay Recommendations
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {recommendations.stays && recommendations.stays.length > 0 ? (
@@ -106,7 +88,7 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
                     {stay.type}
                   </span>
                   <span className="inline-block px-2 py-1 bg-blue-500/40 text-white text-xs rounded-full font-medium">
-                    Weather Perfect
+                    Indian Experience
                   </span>
                 </div>
               </div>
