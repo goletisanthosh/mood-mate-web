@@ -51,14 +51,14 @@ export class WeatherService {
           } catch (error) {
             console.error('Failed to fetch weather with coordinates:', error);
             // Fallback to a default city
-            this.getWeatherByCity('London').then(resolve).catch(reject);
+            this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
           }
         },
         (error) => {
           console.error('Geolocation failed:', error.message);
           // Fallback to a default city when geolocation fails
           console.log('Falling back to default location');
-          this.getWeatherByCity('London').then(resolve).catch(reject);
+          this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
         },
         {
           enableHighAccuracy: false,

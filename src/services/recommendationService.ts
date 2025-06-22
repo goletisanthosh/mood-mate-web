@@ -26,7 +26,7 @@ export class RecommendationService {
 
   private static musicRecommendations: MusicRecommendation[] = [
     // Sunny/Clear weather music - Telugu & Indian
-    { title: "Butta Bomma", artist: "Armaan Malik", genre: "Telugu Pop", mood: ["happy", "energetic"], spotify_url: "https://open.spotify.com/track/example1" },
+    { title: "Butta Bomma", artist: "Armaan Malik", genre: "Telugu Pop", mood: ["happy", "energetic"], spotify_url: "src/data/song1.mp3" },
     { title: "Inkem Inkem", artist: "Sid Sriram", genre: "Telugu Melody", mood: ["happy", "relaxed"], spotify_url: "https://open.spotify.com/track/example2" },
     { title: "Samajavaragamana", artist: "Sid Sriram", genre: "Telugu Classical", mood: ["happy", "relaxed"], spotify_url: "https://open.spotify.com/track/example3" },
 
