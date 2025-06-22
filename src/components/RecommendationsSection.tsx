@@ -20,12 +20,6 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
 
   return (
     <div className="space-y-6">
-      {/* Mood Display */}
-      <div className="glass rounded-xl p-6 text-center slide-up hover-glow">
-        <h2 className="text-2xl font-bold text-white mb-2">Your Current Mood</h2>
-        <p className="text-xl text-white/90">{recommendations.mood}</p>
-      </div>
-
       {/* Music Recommendations with Player - First */}
       <div className="glass rounded-xl p-6 slide-up hover-glow">
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">

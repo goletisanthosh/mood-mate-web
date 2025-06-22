@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { AuthService } from '../services/authService';
 import { RecommendationService } from '../services/recommendationService';
@@ -7,11 +6,13 @@ import AuthForm from '../components/AuthForm';
 import Header from '../components/Header';
 import WeatherCard from '../components/WeatherCard';
 import RecommendationsSection from '../components/RecommendationsSection';
+import MoodSelector from '../components/MoodSelector';
 
 const Index = () => {
   const [user, setUser] = useState<User | null>(null);
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [recommendations, setRecommendations] = useState<MoodRecommendations | null>(null);
+  const [selectedMood, setSelectedMood] = useState<string>('');
   const [backgroundClass, setBackgroundClass] = useState('sunny-bg');
 
   useEffect(() => {
@@ -57,11 +58,27 @@ const Index = () => {
     setUser(null);
     setWeather(null);
     setRecommendations(null);
+    setSelectedMood('');
   };
 
   const handleWeatherUpdate = (weatherData: WeatherData) => {
     setWeather(weatherData);
-    const newRecommendations = RecommendationService.getRecommendations(weatherData);
+    
+    // Set initial mood based on weather if no mood is selected
+    if (!selectedMood) {
+      const weatherBasedMood = RecommendationService.getMoodFromWeather(weatherData);
+      setSelectedMood(weatherBasedMood);
+    }
+    
+    // Update recommendations based on selected mood or weather-based mood
+    const moodToUse = selectedMood || RecommendationService.getMoodFromWeather(weatherData);
+    const newRecommendations = RecommendationService.getRecommendationsByMood(moodToUse);
+    setRecommendations(newRecommendations);
+  };
+
+  const handleMoodChange = (mood: string) => {
+    setSelectedMood(mood);
+    const newRecommendations = RecommendationService.getRecommendationsByMood(mood);
     setRecommendations(newRecommendations);
   };
 
@@ -80,6 +97,14 @@ const Index = () => {
         
         <div className="space-y-6">
           <WeatherCard onWeatherUpdate={handleWeatherUpdate} />
+          
+          {weather && (
+            <MoodSelector 
+              selectedMood={selectedMood} 
+              onMoodChange={handleMoodChange}
+            />
+          )}
+          
           <RecommendationsSection recommendations={recommendations} />
         </div>
         

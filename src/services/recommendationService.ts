@@ -69,22 +69,26 @@ export class RecommendationService {
   ];
 
   static getRecommendations(weather: WeatherData): MoodRecommendations {
-    let mood: string;
+    const mood = this.getMoodFromWeather(weather);
+    return this.getRecommendationsByMood(mood);
+  }
 
+  static getMoodFromWeather(weather: WeatherData): string {
     if (weather.condition.toLowerCase().includes('sun') || weather.condition.toLowerCase().includes('clear')) {
-      mood = 'happy';
+      return 'happy';
     } else if (weather.condition.toLowerCase().includes('rain') || weather.condition.toLowerCase().includes('drizzle')) {
-      mood = 'sad';
+      return 'sad';
     } else if (weather.condition.toLowerCase().includes('cloud')) {
-      mood = 'calm';
+      return 'calm';
     } else if (weather.condition.toLowerCase().includes('snow')) {
-      mood = 'cozy';
+      return 'cozy';
     } else {
-      mood = 'calm';
+      return 'calm';
     }
+  }
 
-    console.log('Weather condition:', weather.condition);
-    console.log('Determined mood:', mood);
+  static getRecommendationsByMood(mood: string): MoodRecommendations {
+    console.log('Getting recommendations for mood:', mood);
     
     // Filter recommendations based on mood
     const foods = this.foodRecommendations.filter(food => 
@@ -100,6 +104,7 @@ export class RecommendationService {
     ).slice(0, 3);
 
     console.log('Filtered foods:', foods);
+    console.log('Filtered music:', music);
     console.log('Filtered stays:', stays);
 
     return {
