@@ -3,6 +3,7 @@ import { WeatherData } from '../types';
 
 // Using OpenWeatherMap API with your provided key
 const API_KEY = '716e02c95b29ff76212e39800512e9fa';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 export class WeatherService {
   private static lastKnownLocation: { lat: number; lon: number } | null = null;
@@ -20,10 +21,7 @@ export class WeatherService {
 
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
-        console.log('Geolocation not supported, using demo data');
-        const weather = this.getDemoWeather();
-        this.cacheWeather(weather);
-        resolve(weather);
+        reject(new Error('Geolocation not supported'));
         return;
       }
 
@@ -35,11 +33,7 @@ export class WeatherService {
             this.cacheWeather(weather);
             resolve(weather);
           })
-          .catch(() => {
-            const weather = this.getDemoWeather();
-            this.cacheWeather(weather);
-            resolve(weather);
-          });
+          .catch(reject);
         return;
       }
 
@@ -54,33 +48,26 @@ export class WeatherService {
             this.cacheWeather(weather);
             resolve(weather);
           } catch (error) {
-            console.log('API failed, using demo data');
-            const weather = this.getDemoWeather();
-            this.cacheWeather(weather);
-            resolve(weather);
+            reject(error);
           }
         },
         (error) => {
-          console.log('Geolocation failed:', error.message, 'using demo data');
-          const weather = this.getDemoWeather();
-          this.cacheWeather(weather);
-          resolve(weather);
+          console.error('Geolocation failed:', error.message);
+          reject(error);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 300000 // 5 minutes
         }
       );
     });
   }
 
   static async getWeatherByCity(city: string): Promise<WeatherData> {
-    try {
-      const weather = await this.fetchWeather(`q=${encodeURIComponent(city)}`);
-      this.cacheWeather(weather);
-      return weather;
-    } catch (error) {
-      // Fallback to demo data
-      const weather = this.getDemoWeather(city);
-      this.cacheWeather(weather);
-      return weather;
-    }
+    const weather = await this.fetchWeather(`q=${encodeURIComponent(city)}`);
+    this.cacheWeather(weather);
+    return weather;
   }
 
   private static cacheWeather(weather: WeatherData) {
@@ -92,7 +79,7 @@ export class WeatherService {
     const response = await fetch(`${BASE_URL}?${params}&appid=${API_KEY}&units=metric`);
     
     if (!response.ok) {
-      throw new Error('Weather API request failed');
+      throw new Error(`Weather API request failed: ${response.status}`);
     }
 
     const data = await response.json();
@@ -105,21 +92,6 @@ export class WeatherService {
       humidity: data.main.humidity,
       windSpeed: data.wind.speed,
       icon: data.weather[0].icon
-    };
-  }
-
-  private static getDemoWeather(city: string = 'Demo Location'): WeatherData {
-    // Use consistent demo weather data instead of random
-    console.log('Using consistent demo weather data');
-    
-    return {
-      location: city,
-      temperature: 22,
-      condition: 'cloudy', // This will give us "calm" mood with proper recommendations
-      description: 'partly cloudy',
-      humidity: 65,
-      windSpeed: 12,
-      icon: '02d'
     };
   }
 }
