@@ -3,7 +3,6 @@ import { WeatherData } from '../types';
 
 // Using OpenWeatherMap API with your provided key
 const API_KEY = '716e02c95b29ff76212e39800512e9fa';
-const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 export class WeatherService {
   private static lastKnownLocation: { lat: number; lon: number } | null = null;
