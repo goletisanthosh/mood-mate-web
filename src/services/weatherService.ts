@@ -21,8 +21,8 @@ export class WeatherService {
 
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
-        console.log('Geolocation not supported, using default location');
-        this.getWeatherByCity('London').then(resolve).catch(reject);
+        console.log('Geolocation not supported, using Hyderabad as default');
+        this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
         return;
       }
 
@@ -34,7 +34,10 @@ export class WeatherService {
             this.cacheWeather(weather);
             resolve(weather);
           })
-          .catch(reject);
+          .catch(() => {
+            console.log('Failed to fetch weather with coordinates, using Hyderabad as fallback');
+            this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
+          });
         return;
       }
 
@@ -50,14 +53,14 @@ export class WeatherService {
             resolve(weather);
           } catch (error) {
             console.error('Failed to fetch weather with coordinates:', error);
-            // Fallback to a default city
+            // Fallback to Hyderabad
             this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
           }
         },
         (error) => {
           console.error('Geolocation failed:', error.message);
-          // Fallback to a default city when geolocation fails
-          console.log('Falling back to default location');
+          // Fallback to Hyderabad when geolocation fails
+          console.log('Falling back to Hyderabad');
           this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
         },
         {
