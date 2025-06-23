@@ -26,7 +26,7 @@ export class RecommendationService {
 
   private static musicRecommendations: MusicRecommendation[] = [
     // Sunny/Clear weather music - Telugu & Indian
-    { title: "Butta Bomma", artist: "Armaan Malik", genre: "Telugu Pop", mood: ["happy", "energetic"], spotify_url: "src/data/song1.mp3" },
+    { title: "Butta Bomma", artist: "Armaan Malik", genre: "Telugu Pop", mood: ["happy", "energetic"], spotify_url: "https://open.spotify.com/track/example1" },
     { title: "Inkem Inkem", artist: "Sid Sriram", genre: "Telugu Melody", mood: ["happy", "relaxed"], spotify_url: "https://open.spotify.com/track/example2" },
     { title: "Samajavaragamana", artist: "Sid Sriram", genre: "Telugu Classical", mood: ["happy", "relaxed"], spotify_url: "https://open.spotify.com/track/example3" },
 
@@ -36,7 +36,7 @@ export class RecommendationService {
     { title: "Kannu Kottina", artist: "Various Artists", genre: "Telugu Classical", mood: ["sad", "contemplative"], spotify_url: "https://open.spotify.com/track/example6" },
 
     // Cloudy weather music - Telugu calm
-    { title: "Ramuloo Ramulaa", artist: "Anurag Kulkarni", genre: "Telugu Pop", mood: ["calm", "contemplative"], spotify_url: "https://open.spotify.com/track/example7" },
+    { title: "Ramuloo Ramulaa", artist: "Anurag Kulkarni", genre: "Telugu Pop", mood: ["calm", "contemplative"], spotify_url: "/music/song1.mp3" },
     { title: "Kadalalle", artist: "Haricharan", genre: "Telugu Melody", mood: ["calm", "inspiring"], spotify_url: "https://open.spotify.com/track/example8" },
     { title: "Yenti Yenti", artist: "Chinmayi", genre: "Telugu Pop", mood: ["calm", "inspiring"], spotify_url: "https://open.spotify.com/track/example9" },
 
