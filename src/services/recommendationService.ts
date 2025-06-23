@@ -36,7 +36,7 @@ export class RecommendationService {
     { title: "Kannu Kottina", artist: "Various Artists", genre: "Telugu Classical", mood: ["sad", "contemplative"], spotify_url: "https://open.spotify.com/track/example6" },
 
     // Cloudy weather music - Telugu calm
-    { title: "Ramuloo Ramulaa", artist: "Anurag Kulkarni", genre: "Telugu Pop", mood: ["calm", "contemplative"], spotify_url: "/music/song1.mp3" },
+    { title: "Ramuloo Ramulaa", artist: "Anurag Kulkarni", genre: "Telugu Pop", mood: ["calm", "contemplative"], spotify_url: "./music/song1.mp3" },
     { title: "Kadalalle", artist: "Haricharan", genre: "Telugu Melody", mood: ["calm", "inspiring"], spotify_url: "https://open.spotify.com/track/example8" },
     { title: "Yenti Yenti", artist: "Chinmayi", genre: "Telugu Pop", mood: ["calm", "inspiring"], spotify_url: "https://open.spotify.com/track/example9" },
 
