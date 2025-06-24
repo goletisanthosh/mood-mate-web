@@ -5,7 +5,7 @@ export class RecommendationService {
     // Sunny/Clear weather foods - Indian options
     { name: "Kulfi", description: "Traditional Indian frozen dessert", type: "Dessert", image: "🍦", mood: ["happy", "energetic", "relaxed"] },
     { name: "Fruit Chaat", description: "Spicy mixed fruit salad", type: "Healthy", image: "🥗", mood: ["happy", "relaxed", "healthy"] },
-    { name: "Lassi", description: "Refreshing yogurt-based drink", type: "Healthy", image: "🥤", mood: ["energetic", "healthy", "refreshing"] },
+    { name: "Lassi", description: "Refreshing yogurt-based drink", type: "Healthy", image: "🥤", mood: ["happy", "healthy", "refreshing"] },
 
     // Rainy weather foods - Indian comfort foods
     { name: "Masala Chai", description: "Spiced Indian tea", type: "Comfort", image: "☕", mood: ["cozy", "contemplative", "comforting", "sad"] },
@@ -19,7 +19,7 @@ export class RecommendationService {
     { name: "Biryani", description: "Aromatic rice dish with spices", type: "Comfort", image: "🍚", mood: ["calm", "comforting", "satisfying"] },
 
     // Snowy weather foods - Indian winter foods
-    { name: "Gajar Halwa", description: "Sweet carrot dessert", type: "Comfort", image: "🥕", mood: ["adventurous", "cozy", "comforting"] },
+    { name: "Carrot Halwa", description: "Sweet carrot dessert", type: "Comfort", image: "🥕", mood: ["adventurous", "cozy", "comforting"] },
     { name: "Rajma Chawal", description: "Kidney beans with rice", type: "Comfort", image: "🍛", mood: ["cozy", "comforting", "warm"] },
     { name: "Gulab Jamun", description: "Sweet milk dumplings in syrup", type: "Dessert", image: "🍯", mood: ["cozy", "comforting", "sweet"] }
   ];
@@ -36,9 +36,9 @@ export class RecommendationService {
     { title: "Kannu Kottina", artist: "Various Artists", genre: "Telugu Classical", mood: ["sad", "contemplative"], spotify_url: "https://open.spotify.com/track/example6" },
 
     // Cloudy weather music - Telugu calm
-    { title: "Ramuloo Ramulaa", artist: "Anurag Kulkarni", genre: "Telugu Pop", mood: ["calm", "contemplative"], spotify_url: "/music/song1.mp3" },
-    { title: "Kadalalle", artist: "Haricharan", genre: "Telugu Melody", mood: ["calm", "inspiring"], spotify_url: "https://open.spotify.com/track/example8" },
-    { title: "Yenti Yenti", artist: "Chinmayi", genre: "Telugu Pop", mood: ["calm", "inspiring"], spotify_url: "https://open.spotify.com/track/example9" },
+    { title: "Neevey Neevey", artist: "GV Prakash", genre: "Telugu Feel Good ", mood: ["calm", "contemplative"], spotify_url: "/music/song1.mp3" },
+    { title: "Kadalalle", artist: "Haricharan", genre: "Telugu Melody", mood: ["calm", "inspiring"], spotify_url: "/music/kadalalle.mp3" },
+    { title: "Evare", artist: "V Yesudas", genre: "Telugu Melody", mood: ["calm", "inspiring"], spotify_url: "/music/evare.mp3" },
 
     // Snowy weather music - Telugu festive
     { title: "Dandaalayyaa", artist: "Dhanunjay", genre: "Telugu Folk", mood: ["cozy", "festive"], spotify_url: "https://open.spotify.com/track/example10" },
@@ -48,24 +48,24 @@ export class RecommendationService {
 
   private static stayRecommendations: StayRecommendation[] = [
     // Sunny/Clear weather stays - Indian locations
-    { name: "Goa Beach Resort", description: "Beachfront stay with water sports", type: "Resort", image: "🏖️", mood: ["happy", "energetic", "relaxed"] },
+    { name: "Beach Resort", description: "Beachfront stay with water sports", type: "Resort", image: "🏖️", mood: ["happy", "energetic", "relaxed"] },
     { name: "Himalayan Retreat", description: "Mountain stay with trekking", type: "Resort", image: "🏔️", mood: ["happy", "adventurous", "peaceful"] },
     { name: "Kerala Backwaters", description: "Houseboat stay in serene waters", type: "Houseboat", image: "🛥️", mood: ["happy", "romantic", "serene"] },
     
     // Rainy weather stays - Indian cozy options
-    { name: "Coorg Coffee Estate", description: "Stay amidst coffee plantations", type: "Homestay", image: "☕", mood: ["cozy", "contemplative", "romantic", "sad"] },
+    { name: "Coffee Estate", description: "Stay amidst coffee plantations", type: "Homestay", image: "☕", mood: ["cozy", "contemplative", "romantic", "sad"] },
     { name: "Ayurvedic Spa Resort", description: "Traditional wellness retreat", type: "Spa", image: "🧘", mood: ["relaxed", "peaceful", "rejuvenating", "sad"] },
     { name: "Heritage Haveli", description: "Traditional Indian palace hotel", type: "Heritage", image: "🏰", mood: ["contemplative", "cozy", "cultural", "sad"] },
     
     // Cloudy weather stays - Indian cultural
-    { name: "Rajasthan Palace Hotel", description: "Royal experience in desert state", type: "Palace", image: "🏛️", mood: ["calm", "creative", "inspiring", "cultured"] },
-    { name: "Mumbai Boutique Hotel", description: "Modern stay in bustling city", type: "Boutique", image: "🏙️", mood: ["calm", "sophisticated", "convenient", "trendy"] },
-    { name: "Tamil Nadu Temple Town", description: "Stay near ancient temples", type: "Guesthouse", image: "🕉️", mood: ["calm", "peaceful", "spiritual", "authentic"] },
+    { name: "Hotel O GS Lodge", description: "Royal experience in low price", type: "Hotel", image: "🏛️", mood: ["calm", "creative", "inspiring", "cultured"] },
+    { name: "ABK Family Farm House", description: "Modern stay in bustling city", type: "Farm House", image: "🏙️", mood: ["calm", "sophisticated", "convenient", "trendy"] },
+    { name: "High Rise Hotel", description: "Stay near ancient temples", type: "Hotel", image: "🕉️", mood: ["calm", "peaceful", "spiritual", "authentic"] },
     
     // Snowy weather stays - Indian hill stations
-    { name: "Manali Snow Resort", description: "Alpine comfort with snow activities", type: "Resort", image: "⛷️", mood: ["adventurous", "cozy", "festive"] },
-    { name: "Shimla Heritage Hotel", description: "Colonial charm in hill station", type: "Heritage", image: "🏔️", mood: ["adventurous", "nostalgic", "cozy"] },
-    { name: "Kashmir Houseboat", description: "Floating stay on Dal Lake", type: "Houseboat", image: "🛥️", mood: ["relaxed", "unique", "magical"] }
+    { name: "Snow Resort", description: "Alpine comfort with snow activities", type: "Resort", image: "⛷️", mood: ["adventurous", "cozy", "festive"] },
+    { name: "Heritage Hotel", description: "Colonial charm in hill station", type: "Heritage", image: "🏔️", mood: ["adventurous", "nostalgic", "cozy"] },
+    { name: "Houseboat", description: "Floating stay on Dal Lake", type: "Houseboat", image: "🛥️", mood: ["relaxed", "unique", "magical"] }
   ];
 
   static getRecommendations(weather: WeatherData): MoodRecommendations {
