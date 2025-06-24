@@ -9,9 +9,13 @@ interface MusicPlayerProps {
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
   const [currentSong, setCurrentSong] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const handlePlay = (index: number) => {
+    const song = songs[index];
+    console.log('Attempting to play:', song.title, 'URL:', song.spotify_url);
+    
     if (currentSong === index && isPlaying) {
       // Pause current song
       setIsPlaying(false);
@@ -19,18 +23,50 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
         audioRef.current.pause();
       }
     } else {
-      // Play new song (demo - using a sample audio URL)
+      // Play new song
       setCurrentSong(index);
-      setIsPlaying(true);
+      setIsLoading(true);
+      
       if (audioRef.current) {
-        // For demo purposes, using a sample audio file
-        audioRef.current.src = 'https://www.soundjay.com/misc/sounds/magic-chime-02.wav';
-        audioRef.current.play().catch(console.error);
+        // Check if it's a local file (starts with /music/ or ./music/)
+        let audioSrc = song.spotify_url;
+        if (audioSrc.startsWith('./music/') || audioSrc.startsWith('/music/')) {
+          // Ensure correct path for local files
+          audioSrc = audioSrc.replace('./music/', '/music/');
+          console.log('Playing local file:', audioSrc);
+        }
+        
+        audioRef.current.src = audioSrc;
+        audioRef.current.load(); // Force reload of the audio source
+        
+        audioRef.current.play()
+          .then(() => {
+            setIsPlaying(true);
+            setIsLoading(false);
+            console.log('Successfully playing:', song.title);
+          })
+          .catch((error) => {
+            console.error('Error playing audio:', error);
+            console.error('Failed to play:', audioSrc);
+            setIsLoading(false);
+            setCurrentSong(null);
+            // Fallback to a demo sound for testing
+            audioRef.current!.src = 'https://www.soundjay.com/misc/sounds/magic-chime-02.wav';
+            audioRef.current!.play().catch(console.error);
+          });
       }
     }
   };
 
   const handleAudioEnd = () => {
+    setIsPlaying(false);
+    setCurrentSong(null);
+    setIsLoading(false);
+  };
+
+  const handleAudioError = (error: any) => {
+    console.error('Audio error:', error);
+    setIsLoading(false);
     setIsPlaying(false);
     setCurrentSong(null);
   };
@@ -40,7 +76,8 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
       <audio
         ref={audioRef}
         onEnded={handleAudioEnd}
-        onError={() => console.log('Audio playback error')}
+        onError={handleAudioError}
+        onCanPlay={() => setIsLoading(false)}
       />
       
       {songs.map((song, index) => (
@@ -53,8 +90,10 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
           <button
             onClick={() => handlePlay(index)}
             className="text-2xl hover:scale-110 transition-transform duration-200"
+            disabled={isLoading && currentSong === index}
           >
-            {currentSong === index && isPlaying ? '⏸️' : '▶️'}
+            {isLoading && currentSong === index ? '⏳' : 
+             currentSong === index && isPlaying ? '⏸️' : '▶️'}
           </button>
           
           <div className="flex-1">
@@ -67,10 +106,17 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
               {currentSong === index && isPlaying && (
                 <span className="text-green-400 text-xs animate-pulse">Now Playing</span>
               )}
+              {isLoading && currentSong === index && (
+                <span className="text-yellow-400 text-xs animate-pulse">Loading...</span>
+              )}
+            </div>
+            <div className="text-xs text-white/50 mt-1">
+              {song.spotify_url.startsWith('/music/') || song.spotify_url.startsWith('./music/') ? 
+                'Local File' : 'External Link'}
             </div>
           </div>
           
-          {song.spotify_url && (
+          {song.spotify_url && !song.spotify_url.startsWith('/music/') && !song.spotify_url.startsWith('./music/') && (
             <a
               href={song.spotify_url}
               target="_blank"
