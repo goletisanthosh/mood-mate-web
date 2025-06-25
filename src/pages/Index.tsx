@@ -8,7 +8,7 @@ import Header from '../components/Header';
 import WeatherCard from '../components/WeatherCard';
 import RecommendationsSection from '../components/RecommendationsSection';
 import MoodSelector from '../components/MoodSelector';
-import LanguageSettings from '../components/LanguageSettings';
+import LanguageSelector from '../components/LanguageSelector';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 
 const IndexContent = () => {
@@ -90,7 +90,7 @@ const IndexContent = () => {
     return (
       <div className={`min-h-screen transition-all duration-1000 ${backgroundClass}`}>
         <div className="absolute top-4 right-4">
-          <LanguageSettings />
+          <LanguageSelector />
         </div>
         <AuthForm onAuthSuccess={handleAuthSuccess} />
       </div>
@@ -102,7 +102,7 @@ const IndexContent = () => {
       <div className="container mx-auto px-4 py-6 max-w-4xl">
         <div className="flex justify-between items-start mb-6">
           <Header user={user} onLogout={handleLogout} />
-          <LanguageSettings />
+          <LanguageSelector />
         </div>
         
         <div className="space-y-6">

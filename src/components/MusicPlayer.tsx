@@ -194,38 +194,36 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
         </div>
       </div>
 
-      {/* Song List - Fixed overflow and transform issues */}
+      {/* Song List */}
       <div className="space-y-2 max-h-64 overflow-y-auto">
-        <div className="pr-2">
-          {songs.map((song, index) => (
-            <div
-              key={index}
-              onClick={() => handleSongSelect(index)}
-              className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer transition-colors duration-200 border border-transparent mb-2 ${
-                index === currentSongIndex
-                  ? 'bg-white/25 border-white/30'
-                  : 'bg-white/10 hover:bg-white/20 hover:border-white/20'
-              }`}
-            >
-              <div className="text-2xl flex-shrink-0">{song.image}</div>
-              <div className="flex-1 min-w-0">
-                <h5 className="font-medium text-white truncate">{song.title}</h5>
-                <p className="text-white/70 text-sm truncate">{song.artist}</p>
-              </div>
-              <div className="flex-shrink-0">
-                {index === currentSongIndex && isPlaying ? (
-                  <div className="flex items-center space-x-1">
-                    <div className="w-1 h-4 bg-white/70 rounded-full animate-pulse"></div>
-                    <div className="w-1 h-3 bg-white/70 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-1 h-5 bg-white/70 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-                  </div>
-                ) : (
-                  <Play size={16} className="text-white/50" />
-                )}
-              </div>
+        {songs.map((song, index) => (
+          <div
+            key={index}
+            onClick={() => handleSongSelect(index)}
+            className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer transition-colors duration-200 ${
+              index === currentSongIndex
+                ? 'bg-white/25'
+                : 'bg-white/10 hover:bg-white/20'
+            }`}
+          >
+            <div className="text-2xl">{song.image}</div>
+            <div className="flex-1">
+              <h5 className="font-medium text-white">{song.title}</h5>
+              <p className="text-white/70 text-sm">{song.artist}</p>
             </div>
-          ))}
-        </div>
+            <div>
+              {index === currentSongIndex && isPlaying ? (
+                <div className="flex items-center space-x-1">
+                  <div className="w-1 h-4 bg-white/70 rounded-full animate-pulse"></div>
+                  <div className="w-1 h-3 bg-white/70 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="w-1 h-5 bg-white/70 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                </div>
+              ) : (
+                <Play size={16} className="text-white/50" />
+              )}
+            </div>
+          </div>
+        ))}
       </div>
 
       <audio
