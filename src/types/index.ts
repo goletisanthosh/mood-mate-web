@@ -53,6 +53,6 @@ export interface StayRecommendation {
 export interface MoodRecommendations {
   mood: string;
   foods: FoodRecommendation[];
-  music: Song[];
+  music: MusicRecommendation[];
   stays: StayRecommendation[];
 }
