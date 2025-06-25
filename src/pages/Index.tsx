@@ -7,13 +7,16 @@ import Header from '../components/Header';
 import WeatherCard from '../components/WeatherCard';
 import RecommendationsSection from '../components/RecommendationsSection';
 import MoodSelector from '../components/MoodSelector';
+import LanguageSelector from '../components/LanguageSelector';
+import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 
-const Index = () => {
+const IndexContent = () => {
   const [user, setUser] = useState<User | null>(null);
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [recommendations, setRecommendations] = useState<MoodRecommendations | null>(null);
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [backgroundClass, setBackgroundClass] = useState('sunny-bg');
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Check if user is already logged in
@@ -85,6 +88,9 @@ const Index = () => {
   if (!user) {
     return (
       <div className={`min-h-screen transition-all duration-1000 ${backgroundClass}`}>
+        <div className="absolute top-4 right-4">
+          <LanguageSelector />
+        </div>
         <AuthForm onAuthSuccess={handleAuthSuccess} />
       </div>
     );
@@ -93,7 +99,10 @@ const Index = () => {
   return (
     <div className={`min-h-screen transition-all duration-1000 ${backgroundClass}`}>
       <div className="container mx-auto px-4 py-6 max-w-4xl">
-        <Header user={user} onLogout={handleLogout} />
+        <div className="flex justify-between items-start mb-6">
+          <Header user={user} onLogout={handleLogout} />
+          <LanguageSelector />
+        </div>
         
         <div className="space-y-6">
           <WeatherCard onWeatherUpdate={handleWeatherUpdate} />
@@ -110,11 +119,19 @@ const Index = () => {
         
         <footer className="mt-12 text-center">
           <p className="text-white/60 text-sm">
-            Made with 🤍 by Santhosh Goleti • Weather-powered recommendations
+            {t('footer.madeWith')}
           </p>
         </footer>
       </div>
     </div>
+  );
+};
+
+const Index = () => {
+  return (
+    <LanguageProvider>
+      <IndexContent />
+    </LanguageProvider>
   );
 };
 

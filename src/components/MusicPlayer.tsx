@@ -1,6 +1,6 @@
-
 import React, { useState, useRef } from 'react';
 import { MusicRecommendation } from '../types';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface MusicPlayerProps {
   songs: MusicRecommendation[];
@@ -11,6 +11,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const { t } = useLanguage();
 
   const playNextSong = () => {
     if (currentSong === null) return;
@@ -111,15 +112,15 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
                 {song.genre}
               </span>
               {currentSong === index && isPlaying && (
-                <span className="text-green-400 text-xs animate-pulse">Now Playing</span>
+                <span className="text-green-400 text-xs animate-pulse">{t('music.nowPlaying')}</span>
               )}
               {isLoading && currentSong === index && (
-                <span className="text-yellow-400 text-xs animate-pulse">Loading...</span>
+                <span className="text-yellow-400 text-xs animate-pulse">{t('music.loading')}</span>
               )}
             </div>
             <div className="text-xs text-white/50 mt-1">
-              {song.spotify_url.startsWith('/music/') || song.spotify_url.startsWith('./music/') ? 
-                'Local File' : 'External Link'}
+              {song.spotify_url && (song.spotify_url.startsWith('/music/') || song.spotify_url.startsWith('./music/')) ? 
+                t('music.localFile') : t('music.externalLink')}
             </div>
           </div>
           
