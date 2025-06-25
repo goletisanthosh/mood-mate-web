@@ -12,6 +12,14 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
   const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  const playNextSong = () => {
+    if (currentSong === null) return;
+    
+    const nextIndex = (currentSong + 1) % songs.length; // Loop back to first song after last
+    console.log('Playing next song:', songs[nextIndex].title);
+    handlePlay(nextIndex);
+  };
+
   const handlePlay = (index: number) => {
     const song = songs[index];
     console.log('Attempting to play:', song.title, 'URL:', song.spotify_url);
@@ -59,9 +67,8 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
   };
 
   const handleAudioEnd = () => {
-    setIsPlaying(false);
-    setCurrentSong(null);
-    setIsLoading(false);
+    // Automatically play next song when current song ends
+    playNextSong();
   };
 
   const handleAudioError = (error: any) => {
