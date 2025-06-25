@@ -21,6 +21,14 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
     );
   }
 
+  // Convert MusicRecommendation to Song format for MusicPlayer
+  const songs = recommendations.music?.map(music => ({
+    title: music.title,
+    artist: music.artist,
+    url: music.spotify_url || '',
+    image: '🎵'
+  })) || [];
+
   return (
     <div className="space-y-6">
       {/* Music Recommendations with Player - First */}
@@ -29,7 +37,7 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
           🎵 {t('recommendations.music.title')}
         </h3>
         <ScrollArea className="h-auto max-h-96">
-          <MusicPlayer songs={recommendations.music} />
+          <MusicPlayer songs={songs} />
         </ScrollArea>
       </div>
 

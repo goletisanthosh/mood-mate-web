@@ -35,6 +35,13 @@ export interface MusicRecommendation {
   spotify_url?: string;
 }
 
+export interface Song {
+  title: string;
+  artist: string;
+  url: string;
+  image: string;
+}
+
 export interface StayRecommendation {
   name: string;
   description: string;
@@ -46,6 +53,6 @@ export interface StayRecommendation {
 export interface MoodRecommendations {
   mood: string;
   foods: FoodRecommendation[];
-  music: MusicRecommendation[];
+  music: Song[];
   stays: StayRecommendation[];
 }
