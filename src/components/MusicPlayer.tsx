@@ -125,8 +125,8 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
 
   return (
     <div className="space-y-4">
-      {/* Current Song Display */}
-      <div className="bg-white/10 rounded-lg p-4 border border-white/20">
+      {/* Current Song Display - Changed background color */}
+      <div className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg p-4 border border-purple-300/30 backdrop-blur-sm">
         <div className="flex items-center space-x-4">
           <div className="text-3xl">{currentSong.image}</div>
           <div className="flex-1">
@@ -234,6 +234,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
         onLoadStart={() => setIsLoading(true)}
         onCanPlay={() => setIsLoading(false)}
         onError={handleError}
+        autoPlay={isPlaying}
       />
     </div>
   );
