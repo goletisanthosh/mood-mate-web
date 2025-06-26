@@ -2,7 +2,6 @@
 import React from 'react';
 import { MoodRecommendations } from '../types';
 import MusicPlayer from './MusicPlayer';
-import { ScrollArea } from './ui/scroll-area';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface RecommendationsSectionProps {
@@ -36,9 +35,9 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
           🎵 {t('recommendations.music.title')}
         </h3>
-        <ScrollArea className="h-auto max-h-96">
+        <div className="max-h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
           <MusicPlayer songs={songs} />
-        </ScrollArea>
+        </div>
       </div>
 
       {/* Food Recommendations - Second */}
@@ -46,8 +45,8 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
           🍽️ {t('recommendations.food.title')}
         </h3>
-        <ScrollArea className="h-auto max-h-96">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pr-4">
+        <div className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent pr-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {recommendations.foods && recommendations.foods.length > 0 ? (
               recommendations.foods.map((food, index) => (
                 <div
@@ -74,7 +73,7 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
               </div>
             )}
           </div>
-        </ScrollArea>
+        </div>
       </div>
 
       {/* Stays Recommendations - Third */}
@@ -82,8 +81,8 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
           🏨 {t('recommendations.stays.title')}
         </h3>
-        <ScrollArea className="h-auto max-h-96">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pr-4">
+        <div className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent pr-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {recommendations.stays && recommendations.stays.length > 0 ? (
               recommendations.stays.map((stay, index) => (
                 <div
@@ -110,7 +109,7 @@ const RecommendationsSection: React.FC<RecommendationsSectionProps> = ({ recomme
               </div>
             )}
           </div>
-        </ScrollArea>
+        </div>
       </div>
     </div>
   );
