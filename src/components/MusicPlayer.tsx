@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, SkipForward, SkipBack, Volume2 } from 'lucide-react';
 import { Song } from '../types';
@@ -124,91 +123,96 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
   const currentSong = songs[currentSongIndex];
 
   return (
-    <div className="space-y-6">
-      {/* Enhanced Current Song Display */}
-      <div className="relative bg-gradient-to-br from-indigo-500/25 via-purple-500/20 to-pink-500/25 rounded-xl p-6 border border-purple-300/40 backdrop-blur-lg shadow-2xl">
+    <div className="space-y-4 sm:space-y-6">
+      {/* Enhanced Current Song Display - Mobile Optimized */}
+      <div className="relative bg-gradient-to-br from-indigo-500/25 via-purple-500/20 to-pink-500/25 rounded-xl p-4 sm:p-6 border border-purple-300/40 backdrop-blur-lg shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-xl"></div>
         <div className="relative z-10">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <div className="text-5xl bg-white/10 p-3 rounded-full border border-white/20">
-                  {currentSong.image}
+          {/* Mobile-first layout */}
+          <div className="space-y-4">
+            {/* Song info and controls - stacked on mobile */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="flex items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
+                <div className="relative flex-shrink-0">
+                  <div className="text-3xl sm:text-5xl bg-white/10 p-2 sm:p-3 rounded-full border border-white/20">
+                    {currentSong.image}
+                  </div>
+                  {isPlaying && (
+                    <div className="absolute -bottom-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full animate-pulse border-2 border-white"></div>
+                  )}
                 </div>
-                {isPlaying && (
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse border-2 border-white"></div>
-                )}
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-bold text-white text-lg sm:text-xl mb-1 truncate">{currentSong.title}</h4>
+                  <p className="text-white/80 text-base sm:text-lg truncate">{currentSong.artist}</p>
+                  {error && (
+                    <p className="text-red-300 text-xs sm:text-sm mt-2 bg-red-500/20 px-2 sm:px-3 py-1 rounded-full border border-red-300/30 truncate">
+                      {error}
+                    </p>
+                  )}
+                </div>
               </div>
-              <div className="flex-1">
-                <h4 className="font-bold text-white text-xl mb-1">{currentSong.title}</h4>
-                <p className="text-white/80 text-lg">{currentSong.artist}</p>
-                {error && (
-                  <p className="text-red-300 text-sm mt-2 bg-red-500/20 px-3 py-1 rounded-full border border-red-300/30">
-                    {error}
-                  </p>
-                )}
+              
+              {/* Controls - centered on mobile */}
+              <div className="flex items-center justify-center space-x-2 sm:space-x-3">
+                <button
+                  onClick={handlePrevious}
+                  className="p-2 sm:p-3 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-300 hover:scale-110"
+                  disabled={isLoading}
+                >
+                  <SkipBack size={16} className="sm:w-[18px] sm:h-[18px]" />
+                </button>
+                <button
+                  onClick={togglePlayPause}
+                  className="p-3 sm:p-4 bg-white/30 hover:bg-white/40 text-white rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  ) : isPlaying ? (
+                    <Pause size={20} className="sm:w-6 sm:h-6" />
+                  ) : (
+                    <Play size={20} className="sm:w-6 sm:h-6" />
+                  )}
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="p-2 sm:p-3 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-300 hover:scale-110"
+                  disabled={isLoading}
+                >
+                  <SkipForward size={16} className="sm:w-[18px] sm:h-[18px]" />
+                </button>
               </div>
             </div>
-            
-            <div className="flex items-center space-x-3">
-              <button
-                onClick={handlePrevious}
-                className="p-3 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-300 hover:scale-110"
-                disabled={isLoading}
-              >
-                <SkipBack size={18} />
-              </button>
-              <button
-                onClick={togglePlayPause}
-                className="p-4 bg-white/30 hover:bg-white/40 text-white rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                ) : isPlaying ? (
-                  <Pause size={24} />
-                ) : (
-                  <Play size={24} />
-                )}
-              </button>
-              <button
-                onClick={handleNext}
-                className="p-3 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-300 hover:scale-110"
-                disabled={isLoading}
-              >
-                <SkipForward size={18} />
-              </button>
-            </div>
-          </div>
 
-          {/* Enhanced Progress Bar */}
-          <div className="space-y-3">
-            <div className="flex items-center space-x-3">
-              <span className="text-white/70 text-sm font-medium min-w-[40px]">{formatTime(currentTime)}</span>
-              <div className="flex-1 bg-white/20 rounded-full h-3 overflow-hidden shadow-inner">
-                <div
-                  className="bg-gradient-to-r from-blue-400 to-purple-400 h-full transition-all duration-300 shadow-lg"
-                  style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
-                />
+            {/* Enhanced Progress Bar */}
+            <div className="space-y-2 sm:space-y-3">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <span className="text-white/70 text-xs sm:text-sm font-medium min-w-[35px] sm:min-w-[40px]">{formatTime(currentTime)}</span>
+                <div className="flex-1 bg-white/20 rounded-full h-2 sm:h-3 overflow-hidden shadow-inner">
+                  <div
+                    className="bg-gradient-to-r from-blue-400 to-purple-400 h-full transition-all duration-300 shadow-lg"
+                    style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
+                  />
+                </div>
+                <span className="text-white/70 text-xs sm:text-sm font-medium min-w-[35px] sm:min-w-[40px]">{formatTime(duration)}</span>
               </div>
-              <span className="text-white/70 text-sm font-medium min-w-[40px]">{formatTime(duration)}</span>
-            </div>
-            
-            {/* Enhanced Volume Control */}
-            <div className="flex items-center space-x-3">
-              <Volume2 size={18} className="text-white/70" />
-              <div className="flex-1 bg-white/20 rounded-full h-2 overflow-hidden">
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.1"
-                  value={volume}
-                  onChange={handleVolumeChange}
-                  className="w-full h-full appearance-none bg-transparent cursor-pointer slider"
-                />
+              
+              {/* Enhanced Volume Control */}
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <Volume2 size={16} className="sm:w-[18px] sm:h-[18px] text-white/70 flex-shrink-0" />
+                <div className="flex-1 bg-white/20 rounded-full h-1.5 sm:h-2 overflow-hidden">
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value={volume}
+                    onChange={handleVolumeChange}
+                    className="w-full h-full appearance-none bg-transparent cursor-pointer slider"
+                  />
+                </div>
+                <span className="text-white/60 text-xs sm:text-sm min-w-[25px] sm:min-w-[30px]">{Math.round(volume * 100)}%</span>
               </div>
-              <span className="text-white/60 text-sm min-w-[30px]">{Math.round(volume * 100)}%</span>
             </div>
           </div>
         </div>
@@ -216,7 +220,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
 
       {/* Song List */}
       <div className="space-y-2">
-        <h5 className="text-white/80 font-medium mb-3">Playlist</h5>
+        <h5 className="text-white/80 font-medium mb-3 text-sm sm:text-base">Playlist</h5>
         <div className="space-y-2 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
           {songs.map((song, index) => (
             <div
@@ -228,20 +232,20 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
                   : 'bg-white/10 hover:bg-white/15 border border-transparent'
               }`}
             >
-              <div className="text-2xl">{song.image}</div>
-              <div className="flex-1">
-                <h5 className="font-medium text-white">{song.title}</h5>
-                <p className="text-white/70 text-sm">{song.artist}</p>
+              <div className="text-xl sm:text-2xl flex-shrink-0">{song.image}</div>
+              <div className="flex-1 min-w-0">
+                <h5 className="font-medium text-white text-sm sm:text-base truncate">{song.title}</h5>
+                <p className="text-white/70 text-xs sm:text-sm truncate">{song.artist}</p>
               </div>
-              <div>
+              <div className="flex-shrink-0">
                 {index === currentSongIndex && isPlaying ? (
                   <div className="flex items-center space-x-1">
-                    <div className="w-1 h-4 bg-blue-400 rounded-full animate-pulse"></div>
-                    <div className="w-1 h-3 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-1 h-5 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                    <div className="w-0.5 h-3 sm:w-1 sm:h-4 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div className="w-0.5 h-2 sm:w-1 sm:h-3 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-0.5 h-4 sm:w-1 sm:h-5 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                   </div>
                 ) : (
-                  <Play size={16} className="text-white/50" />
+                  <Play size={14} className="sm:w-4 sm:h-4 text-white/50" />
                 )}
               </div>
             </div>
