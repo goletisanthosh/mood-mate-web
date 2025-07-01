@@ -99,7 +99,11 @@
 }
 
 .cloudy-bg {
-  @apply bg-gradient-to-br from-gray-400 via-blue-400 to-purple-400;
+  @apply bg-gradient-to-br from-slate-400 via-slate-500 to-slate-600;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
 }
 
 .rainy-bg {

@@ -11,6 +11,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [locationStatus, setLocationStatus] = useState<string>('');
 
   useEffect(() => {
     loadCurrentLocationWeather();
@@ -19,24 +20,32 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
   const loadCurrentLocationWeather = async () => {
     setLoading(true);
     setError(null);
+    setLocationStatus('Getting your location...');
+    
     try {
-      console.log('Attempting to fetch weather data...');
+      console.log('Attempting to fetch current location weather...');
       const weatherData = await WeatherService.getWeatherByLocation();
       console.log('Weather data received:', weatherData);
       setWeather(weatherData);
       onWeatherUpdate(weatherData);
+      setLocationStatus('Location updated successfully');
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => setLocationStatus(''), 3000);
     } catch (error) {
       console.error('Error loading weather:', error);
-      setError('Unable to fetch weather data. Using default location.');
+      setError('Unable to get your location. Showing default weather.');
+      setLocationStatus('Using default location');
+      
       // Try to get weather for a default location as fallback
       try {
         const fallbackWeather = await WeatherService.getWeatherByCity('London');
         setWeather(fallbackWeather);
         onWeatherUpdate(fallbackWeather);
-        setError(null);
       } catch (fallbackError) {
         console.error('Fallback weather fetch failed:', fallbackError);
         setError('Weather service temporarily unavailable. Please try again later.');
+        setLocationStatus('');
       }
     } finally {
       setLoading(false);
@@ -47,7 +56,8 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
     return (
       <div className="glass rounded-xl p-6 text-center slide-up">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white/60 mx-auto mb-4"></div>
-        <p className="text-white/80">Fetching real-time weather data...</p>
+        <p className="text-white/80 mb-2">Fetching real-time weather data...</p>
+        <p className="text-white/60 text-sm">{locationStatus}</p>
       </div>
     );
   }
@@ -83,8 +93,11 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
             <h3 className="text-2xl font-bold text-white">{weather.temperature}°C</h3>
             <p className="text-white/80 capitalize">{weather.description}</p>
             <p className="text-white/60">{weather.location}</p>
+            {locationStatus && (
+              <p className="text-green-200/80 text-sm mt-2">{locationStatus}</p>
+            )}
             {error && (
-              <p className="text-yellow-200/80 text-sm mt-2">Using default location</p>
+              <p className="text-yellow-200/80 text-sm mt-2">{error}</p>
             )}
           </div>
           
@@ -99,9 +112,10 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
             </div>
             <button
               onClick={loadCurrentLocationWeather}
-              className="w-full mt-4 px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition-all duration-300 hover-lift backdrop-blur-sm border border-white/20"
+              disabled={loading}
+              className="w-full mt-4 px-4 py-2 bg-white/20 hover:bg-white/30 disabled:bg-white/10 text-white rounded-lg transition-all duration-300 hover-lift backdrop-blur-sm border border-white/20 disabled:cursor-not-allowed"
             >
-              📍 Refresh Location
+              {loading ? '🔄 Refreshing...' : '📍 Refresh Location'}
             </button>
           </div>
         </div>

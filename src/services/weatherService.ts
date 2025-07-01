@@ -21,52 +21,55 @@ export class WeatherService {
 
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
-        console.log('Geolocation not supported, using Hyderabad as default');
-        this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
+        console.log('Geolocation not supported, using London as default');
+        this.getWeatherByCity('London').then(resolve).catch(reject);
         return;
       }
 
-      // If we have a last known location, use it instead of requesting again
-      if (this.lastKnownLocation) {
-        console.log('Using last known location');
-        this.fetchWeather(`lat=${this.lastKnownLocation.lat}&lon=${this.lastKnownLocation.lon}`)
-          .then(weather => {
-            this.cacheWeather(weather);
-            resolve(weather);
-          })
-          .catch(() => {
-            console.log('Failed to fetch weather with coordinates, using Hyderabad as fallback');
-            this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
-          });
-        return;
-      }
+      // Clear any existing cache when requesting fresh location
+      this.lastKnownLocation = null;
+      this.cachedWeather = null;
 
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           try {
             const { latitude, longitude } = position.coords;
             this.lastKnownLocation = { lat: latitude, lon: longitude };
-            console.log('Got new location:', this.lastKnownLocation);
+            console.log('Got current location:', { latitude, longitude });
             
             const weather = await this.fetchWeather(`lat=${latitude}&lon=${longitude}`);
             this.cacheWeather(weather);
+            console.log('Weather data for current location:', weather);
             resolve(weather);
           } catch (error) {
             console.error('Failed to fetch weather with coordinates:', error);
-            // Fallback to Hyderabad
-            this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
+            // Fallback to London
+            this.getWeatherByCity('London').then(resolve).catch(reject);
           }
         },
         (error) => {
-          console.error('Geolocation failed:', error.message);
-          // Fallback to Hyderabad when geolocation fails
-          console.log('Falling back to Hyderabad');
-          this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
+          console.error('Geolocation error:', error);
+          let errorMessage = 'Location access denied';
+          
+          switch(error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage = 'Location access denied by user';
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = 'Location information unavailable';
+              break;
+            case error.TIMEOUT:
+              errorMessage = 'Location request timeout';
+              break;
+          }
+          
+          console.log(`${errorMessage}. Using London as fallback.`);
+          this.getWeatherByCity('London').then(resolve).catch(reject);
         },
         {
-          enableHighAccuracy: false,
-          timeout: 5000,
-          maximumAge: 300000 // 5 minutes
+          enableHighAccuracy: true,
+          timeout: 10000, // 10 seconds
+          maximumAge: 0 // Don't use cached position
         }
       );
     });
