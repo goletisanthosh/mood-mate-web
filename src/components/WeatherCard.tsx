@@ -37,9 +37,9 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
       setError('Unable to get your location. Showing default weather.');
       setLocationStatus('Using default location');
       
-      // Try to get weather for a default location as fallback
+      // Try to get weather for Hyderabad as fallback
       try {
-        const fallbackWeather = await WeatherService.getWeatherByCity('London');
+        const fallbackWeather = await WeatherService.getWeatherByCity('Hyderabad');
         setWeather(fallbackWeather);
         onWeatherUpdate(fallbackWeather);
       } catch (fallbackError) {

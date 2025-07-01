@@ -21,14 +21,20 @@ export class WeatherService {
 
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
-        console.log('Geolocation not supported, using London as default');
-        this.getWeatherByCity('London').then(resolve).catch(reject);
+        console.log('Geolocation not supported, using Hyderabad as default');
+        this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
         return;
       }
 
       // Clear any existing cache when requesting fresh location
       this.lastKnownLocation = null;
       this.cachedWeather = null;
+
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 8000, // Reduced timeout to 8 seconds
+        maximumAge: 300000 // Allow 5 minute old position
+      };
 
       navigator.geolocation.getCurrentPosition(
         async (position) => {
@@ -43,8 +49,8 @@ export class WeatherService {
             resolve(weather);
           } catch (error) {
             console.error('Failed to fetch weather with coordinates:', error);
-            // Fallback to London
-            this.getWeatherByCity('London').then(resolve).catch(reject);
+            // Fallback to Hyderabad
+            this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
           }
         },
         (error) => {
@@ -63,14 +69,10 @@ export class WeatherService {
               break;
           }
           
-          console.log(`${errorMessage}. Using London as fallback.`);
-          this.getWeatherByCity('London').then(resolve).catch(reject);
+          console.log(`${errorMessage}. Using Hyderabad as fallback.`);
+          this.getWeatherByCity('Hyderabad').then(resolve).catch(reject);
         },
-        {
-          enableHighAccuracy: true,
-          timeout: 10000, // 10 seconds
-          maximumAge: 0 // Don't use cached position
-        }
+        options
       );
     });
   }
