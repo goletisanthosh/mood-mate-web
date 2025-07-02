@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { AuthService } from '../services/authService';
 import { RecommendationService } from '../services/recommendationService';
@@ -17,6 +18,7 @@ const IndexContent = () => {
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [backgroundClass, setBackgroundClass] = useState('sunny-bg');
   const [showAIInsights, setShowAIInsights] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -25,6 +27,7 @@ const IndexContent = () => {
     if (currentUser) {
       setUser(currentUser);
     }
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -82,6 +85,9 @@ const IndexContent = () => {
       console.log('AI recommendations set:', newRecommendations);
     } catch (error) {
       console.error('Failed to get recommendations:', error);
+      // Fallback to static recommendations
+      const fallbackRecommendations = RecommendationService.getRecommendationsByMood(selectedMood || 'happy');
+      setRecommendations(fallbackRecommendations);
     }
   };
 
@@ -91,9 +97,7 @@ const IndexContent = () => {
     if (weather) {
       try {
         console.log('Getting AI recommendations for mood change:', mood);
-        // Create weather data with selected mood for AI processing
-        const weatherForAI = { ...weather };
-        const newRecommendations = await RecommendationService.getRecommendations(weatherForAI);
+        const newRecommendations = await RecommendationService.getRecommendations(weather);
         setRecommendations(newRecommendations);
       } catch (error) {
         console.error('Failed to get mood-based recommendations:', error);
@@ -103,6 +107,18 @@ const IndexContent = () => {
       }
     }
   };
+
+  // Show loading screen while checking authentication
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center">
+        <div className="glass rounded-xl p-8 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white/60 mx-auto mb-4"></div>
+          <p className="text-white/80">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!user) {
     return (
