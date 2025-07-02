@@ -23,7 +23,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
     setLoading(true);
     setError('');
     try {
-      const weatherData = await WeatherService.getCurrentWeather();
+      const weatherData = await WeatherService.getWeatherByLocation();
       setWeather(weatherData);
       onWeatherUpdate(weatherData);
     } catch (err) {
@@ -40,7 +40,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
     setLoading(true);
     setError('');
     try {
-      const weatherData = await WeatherService.getWeatherByLocation(locationInput.trim());
+      const weatherData = await WeatherService.getWeatherByCity(locationInput.trim());
       setWeather(weatherData);
       onWeatherUpdate(weatherData);
     } catch (err) {
@@ -113,7 +113,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
             <div className="text-right">
               <p className="text-3xl font-bold text-white">{Math.round(weather.temperature)}°C</p>
               <p className="text-white/60 text-sm">
-                Feels like {Math.round(weather.feelsLike || weather.temperature)}°C
+                Feels like {Math.round(weather.temperature)}°C
               </p>
             </div>
           </div>
