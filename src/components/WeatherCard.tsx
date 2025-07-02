@@ -59,25 +59,19 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
 
   if (loading) {
     return (
-      <div className="glass rounded-xl p-6 text-center fade-in">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white/60 mx-auto mb-4"></div>
-        <p className="text-white/80">{t('weather.loading')}</p>
+      <div className="bg-white/20 backdrop-blur-md border border-white/30 shadow-xl rounded-xl p-6 text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+        <p className="text-gray-800 font-medium">Loading weather...</p>
       </div>
     );
   }
 
   return (
-    <div className="glass rounded-xl p-6 slide-up hover-glow">
+    <div className="bg-white/20 backdrop-blur-md border border-white/30 shadow-xl rounded-xl p-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-white flex items-center">
-          ☀️ {t('weather.title')}
+        <h2 className="text-2xl font-bold text-gray-800 flex items-center">
+          ☀️ Weather
         </h2>
-        <button
-          onClick={getCurrentLocationWeather}
-          className="px-3 py-1 bg-white/20 hover:bg-white/30 text-white rounded-lg transition-all duration-300 text-sm"
-        >
-          🔄 {t('weather.refresh')}
-        </button>
       </div>
 
       <div className="flex gap-2 mb-4">
@@ -86,20 +80,20 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
           value={locationInput}
           onChange={(e) => setLocationInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder={t('weather.searchPlaceholder')}
-          className="flex-1 px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
+          placeholder="Enter Location"
+          className="flex-1 px-4 py-2 bg-white/30 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
         <button
           onClick={searchWeather}
-          className="px-4 py-2 bg-blue-500/30 hover:bg-blue-500/50 text-white rounded-lg transition-all duration-300"
+          className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300 font-medium"
         >
           🔍
         </button>
       </div>
 
       {error && (
-        <div className="bg-red-500/20 border border-red-400/30 rounded-lg p-3 mb-4">
-          <p className="text-red-200 text-sm">{error}</p>
+        <div className="bg-red-100 border border-red-400 rounded-lg p-3 mb-4">
+          <p className="text-red-700 text-sm">{error}</p>
         </div>
       )}
 
@@ -107,25 +101,25 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-xl font-semibold text-white">{weather.location}</h3>
-              <p className="text-white/80 capitalize">{weather.condition}</p>
+              <h3 className="text-xl font-semibold text-gray-800">{weather.location}</h3>
+              <p className="text-gray-600 capitalize">{weather.condition}</p>
             </div>
             <div className="text-right">
-              <p className="text-3xl font-bold text-white">{Math.round(weather.temperature)}°C</p>
-              <p className="text-white/60 text-sm">
+              <p className="text-3xl font-bold text-gray-800">{Math.round(weather.temperature)}°C</p>
+              <p className="text-gray-600 text-sm">
                 Feels like {Math.round(weather.temperature)}°C
               </p>
             </div>
           </div>
           
           <div className="grid grid-cols-2 gap-4 text-sm">
-            <div className="bg-white/10 rounded-lg p-3">
-              <p className="text-white/60">💧 {t('weather.humidity')}</p>
-              <p className="text-white font-medium">{weather.humidity}%</p>
+            <div className="bg-white/20 rounded-lg p-3">
+              <p className="text-gray-600">💧 Humidity</p>
+              <p className="text-gray-800 font-medium">{weather.humidity}%</p>
             </div>
-            <div className="bg-white/10 rounded-lg p-3">
-              <p className="text-white/60">💨 {t('weather.windSpeed')}</p>
-              <p className="text-white font-medium">{weather.windSpeed} km/h</p>
+            <div className="bg-white/20 rounded-lg p-3">
+              <p className="text-gray-600">💨 Wind Speed</p>
+              <p className="text-gray-800 font-medium">{weather.windSpeed} km/h</p>
             </div>
           </div>
         </div>
