@@ -9,7 +9,141 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      ai_improvements: {
+        Row: {
+          created_at: string | null
+          data_analysis: Json | null
+          id: string
+          improvement_type: string
+          status: string | null
+          suggestion: string
+        }
+        Insert: {
+          created_at?: string | null
+          data_analysis?: Json | null
+          id?: string
+          improvement_type: string
+          status?: string | null
+          suggestion: string
+        }
+        Update: {
+          created_at?: string | null
+          data_analysis?: Json | null
+          id?: string
+          improvement_type?: string
+          status?: string | null
+          suggestion?: string
+        }
+        Relationships: []
+      }
+      location_weather_history: {
+        Row: {
+          id: string
+          location: string
+          mood_selected: string | null
+          temperature: number
+          timestamp: string | null
+          user_id: string | null
+          weather_condition: string
+        }
+        Insert: {
+          id?: string
+          location: string
+          mood_selected?: string | null
+          temperature: number
+          timestamp?: string | null
+          user_id?: string | null
+          weather_condition: string
+        }
+        Update: {
+          id?: string
+          location?: string
+          mood_selected?: string | null
+          temperature?: number
+          timestamp?: string | null
+          user_id?: string | null
+          weather_condition?: string
+        }
+        Relationships: []
+      }
+      recommendation_history: {
+        Row: {
+          created_at: string | null
+          id: string
+          location: string
+          mood: string
+          recommendation_data: Json
+          recommendation_type: string
+          user_feedback: number | null
+          user_id: string | null
+          was_helpful: boolean | null
+          weather_condition: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          location: string
+          mood: string
+          recommendation_data: Json
+          recommendation_type: string
+          user_feedback?: number | null
+          user_id?: string | null
+          was_helpful?: boolean | null
+          weather_condition: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          location?: string
+          mood?: string
+          recommendation_data?: Json
+          recommendation_type?: string
+          user_feedback?: number | null
+          user_id?: string | null
+          was_helpful?: boolean | null
+          weather_condition?: string
+        }
+        Relationships: []
+      }
+      user_profiles: {
+        Row: {
+          created_at: string | null
+          food_preferences: Json | null
+          id: string
+          location_preferences: Json | null
+          music_preferences: Json | null
+          name: string | null
+          preferred_language: string | null
+          stay_preferences: Json | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          food_preferences?: Json | null
+          id?: string
+          location_preferences?: Json | null
+          music_preferences?: Json | null
+          name?: string | null
+          preferred_language?: string | null
+          stay_preferences?: Json | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          food_preferences?: Json | null
+          id?: string
+          location_preferences?: Json | null
+          music_preferences?: Json | null
+          name?: string | null
+          preferred_language?: string | null
+          stay_preferences?: Json | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -1,4 +1,5 @@
 import { WeatherData, MoodRecommendations, FoodRecommendation, MusicRecommendation, StayRecommendation } from '../types';
+import { AIRecommendationService } from './aiRecommendationService';
 
 export class RecommendationService {
   private static foodRecommendations: FoodRecommendation[] = [
@@ -84,9 +85,20 @@ export class RecommendationService {
     { name: "Mountain Lodge", description: "Rustic mountain accommodation", type: "Resort", image: "🏔️", mood: ["adventurous", "cozy", "natural"] }
   ];
 
-  static getRecommendations(weather: WeatherData): MoodRecommendations {
+  static async getRecommendations(weather: WeatherData): Promise<MoodRecommendations> {
     const mood = this.getMoodFromWeather(weather);
-    return this.getRecommendationsByMood(mood);
+    
+    try {
+      // Try to get AI-powered recommendations first
+      console.log('Attempting to get AI recommendations...');
+      const aiRecommendations = await AIRecommendationService.getAIRecommendations(weather, mood);
+      console.log('AI recommendations successful:', aiRecommendations);
+      return aiRecommendations;
+    } catch (error) {
+      console.error('AI recommendations failed, falling back to static recommendations:', error);
+      // Fallback to static recommendations if AI fails
+      return this.getRecommendationsByMood(mood);
+    }
   }
 
   static getMoodFromWeather(weather: WeatherData): string {

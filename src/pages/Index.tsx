@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { AuthService } from '../services/authService';
 import { RecommendationService } from '../services/recommendationService';
@@ -8,6 +7,7 @@ import Header from '../components/Header';
 import WeatherCard from '../components/WeatherCard';
 import RecommendationsSection from '../components/RecommendationsSection';
 import MoodSelector from '../components/MoodSelector';
+import AIInsights from '../components/AIInsights';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 
 const IndexContent = () => {
@@ -16,6 +16,7 @@ const IndexContent = () => {
   const [recommendations, setRecommendations] = useState<MoodRecommendations | null>(null);
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [backgroundClass, setBackgroundClass] = useState('sunny-bg');
+  const [showAIInsights, setShowAIInsights] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const IndexContent = () => {
     setSelectedMood('');
   };
 
-  const handleWeatherUpdate = (weatherData: WeatherData) => {
+  const handleWeatherUpdate = async (weatherData: WeatherData) => {
     setWeather(weatherData);
     
     // Set initial mood based on weather if no mood is selected
@@ -73,16 +74,34 @@ const IndexContent = () => {
       setSelectedMood(weatherBasedMood);
     }
     
-    // Update recommendations based on selected mood or weather-based mood
-    const moodToUse = selectedMood || RecommendationService.getMoodFromWeather(weatherData);
-    const newRecommendations = RecommendationService.getRecommendationsByMood(moodToUse);
-    setRecommendations(newRecommendations);
+    // Get AI-powered recommendations
+    try {
+      console.log('Getting AI-powered recommendations for weather update...');
+      const newRecommendations = await RecommendationService.getRecommendations(weatherData);
+      setRecommendations(newRecommendations);
+      console.log('AI recommendations set:', newRecommendations);
+    } catch (error) {
+      console.error('Failed to get recommendations:', error);
+    }
   };
 
-  const handleMoodChange = (mood: string) => {
+  const handleMoodChange = async (mood: string) => {
     setSelectedMood(mood);
-    const newRecommendations = RecommendationService.getRecommendationsByMood(mood);
-    setRecommendations(newRecommendations);
+    
+    if (weather) {
+      try {
+        console.log('Getting AI recommendations for mood change:', mood);
+        // Create weather data with selected mood for AI processing
+        const weatherForAI = { ...weather };
+        const newRecommendations = await RecommendationService.getRecommendations(weatherForAI);
+        setRecommendations(newRecommendations);
+      } catch (error) {
+        console.error('Failed to get mood-based recommendations:', error);
+        // Fallback to static recommendations
+        const fallbackRecommendations = RecommendationService.getRecommendationsByMood(mood);
+        setRecommendations(fallbackRecommendations);
+      }
+    }
   };
 
   if (!user) {
@@ -108,12 +127,39 @@ const IndexContent = () => {
             />
           )}
           
-          <RecommendationsSection recommendations={recommendations} />
+          <div className="flex gap-4 mb-6">
+            <button
+              onClick={() => setShowAIInsights(false)}
+              className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+                !showAIInsights 
+                  ? 'bg-white/30 text-white border border-white/30' 
+                  : 'bg-white/10 text-white/70 hover:bg-white/20'
+              }`}
+            >
+              🎯 Recommendations
+            </button>
+            <button
+              onClick={() => setShowAIInsights(true)}
+              className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+                showAIInsights 
+                  ? 'bg-white/30 text-white border border-white/30' 
+                  : 'bg-white/10 text-white/70 hover:bg-white/20'
+              }`}
+            >
+              🤖 AI Insights
+            </button>
+          </div>
+          
+          {showAIInsights ? (
+            <AIInsights />
+          ) : (
+            <RecommendationsSection recommendations={recommendations} />
+          )}
         </div>
         
         <footer className="mt-12 text-center">
           <p className="text-white/60 text-sm">
-            {t('footer.madeWith')}
+            {t('footer.madeWith')} ✨ Powered by AI Intelligence
           </p>
         </footer>
       </div>
