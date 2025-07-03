@@ -59,67 +59,85 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
 
   if (loading) {
     return (
-      <div className="bg-white/20 backdrop-blur-md border border-white/30 shadow-xl rounded-xl p-6 text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-        <p className="text-gray-800 font-medium">Loading weather...</p>
+      <div className="glass rounded-2xl p-4 sm:p-6 text-center slide-up">
+        <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-white/60 mx-auto mb-3 sm:mb-4"></div>
+        <p className="text-white font-medium text-sm sm:text-base">Loading weather...</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white/20 backdrop-blur-md border border-white/30 shadow-xl rounded-xl p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-gray-800 flex items-center">
-          ☀️ Weather
+    <div className="glass rounded-2xl p-4 sm:p-6 slide-up hover-glow">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 space-y-2 sm:space-y-0">
+        <h2 className="text-lg sm:text-2xl font-bold text-white flex items-center gap-2 sm:gap-3">
+          <div className="p-1.5 sm:p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+            ☀️
+          </div>
+          <span>Weather</span>
         </h2>
       </div>
 
-      <div className="flex gap-2 mb-4">
+      {/* Search Input */}
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4 sm:mb-6">
         <input
           type="text"
           value={locationInput}
           onChange={(e) => setLocationInput(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Enter Location"
-          className="flex-1 px-4 py-2 bg-white/30 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="flex-1 px-3 py-2.5 sm:px-4 sm:py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 backdrop-blur-sm text-sm sm:text-base transition-all duration-300"
         />
         <button
           onClick={searchWeather}
-          className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300 font-medium"
+          className="px-4 py-2.5 sm:px-6 sm:py-3 bg-white/25 hover:bg-white/35 text-white rounded-xl transition-all duration-300 font-medium backdrop-blur-sm border border-white/20 hover:border-white/40 text-sm sm:text-base min-w-[60px] sm:min-w-[80px] flex items-center justify-center"
         >
           🔍
         </button>
       </div>
 
+      {/* Error Message */}
       {error && (
-        <div className="bg-red-100 border border-red-400 rounded-lg p-3 mb-4">
-          <p className="text-red-700 text-sm">{error}</p>
+        <div className="bg-red-500/20 border border-red-400/30 rounded-xl p-3 mb-4 backdrop-blur-sm">
+          <p className="text-red-200 text-xs sm:text-sm leading-relaxed">{error}</p>
         </div>
       )}
 
+      {/* Weather Display */}
       {weather && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-xl font-semibold text-gray-800">{weather.location}</h3>
-              <p className="text-gray-600 capitalize">{weather.condition}</p>
+        <div className="space-y-4 sm:space-y-6">
+          {/* Main Weather Info */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+            <div className="flex-1">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{weather.location}</h3>
+              <p className="text-white/80 capitalize text-sm sm:text-base">{weather.condition}</p>
             </div>
-            <div className="text-right">
-              <p className="text-3xl font-bold text-gray-800">{Math.round(weather.temperature)}°C</p>
-              <p className="text-gray-600 text-sm">
+            <div className="text-center sm:text-right">
+              <p className="text-2xl sm:text-4xl font-bold text-white mb-1">
+                {Math.round(weather.temperature)}°C
+              </p>
+              <p className="text-white/70 text-xs sm:text-sm">
                 Feels like {Math.round(weather.temperature)}°C
               </p>
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div className="bg-white/20 rounded-lg p-3">
-              <p className="text-gray-600">💧 Humidity</p>
-              <p className="text-gray-800 font-medium">{weather.humidity}%</p>
+          {/* Weather Details Grid */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="bg-white/15 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-white/10 hover-lift">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                <span className="text-lg sm:text-xl">💧</span>
+                <p className="text-white/80 text-xs sm:text-sm font-medium">Humidity</p>
+              </div>
+              <p className="text-white font-bold text-base sm:text-lg">{weather.humidity}%</p>
             </div>
-            <div className="bg-white/20 rounded-lg p-3">
-              <p className="text-gray-600">💨 Wind Speed</p>
-              <p className="text-gray-800 font-medium">{weather.windSpeed} km/h</p>
+            
+            <div className="bg-white/15 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-white/10 hover-lift">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                <span className="text-lg sm:text-xl">💨</span>
+                <p className="text-white/80 text-xs sm:text-sm font-medium">Wind Speed</p>
+              </div>
+              <p className="text-white font-bold text-base sm:text-lg">{weather.windSpeed} km/h</p>
             </div>
           </div>
         </div>

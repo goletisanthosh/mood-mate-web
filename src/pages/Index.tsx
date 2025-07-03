@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { AuthService } from '../services/authService';
 import { RecommendationService } from '../services/recommendationService';
@@ -31,11 +30,14 @@ const IndexContent = () => {
   }, []);
 
   useEffect(() => {
-    // Update background based on weather
+    // Enhanced background logic based on weather and time of day
     if (weather) {
       const condition = weather.condition.toLowerCase();
       const currentHour = new Date().getHours();
       const isNight = currentHour < 6 || currentHour > 19;
+      const isMorning = currentHour >= 6 && currentHour < 12;
+      const isAfternoon = currentHour >= 12 && currentHour < 17;
+      const isEvening = currentHour >= 17 && currentHour <= 19;
       
       if (isNight) {
         if (condition.includes('clear')) {
@@ -44,15 +46,39 @@ const IndexContent = () => {
           setBackgroundClass('night-bg');
         }
       } else if (condition.includes('sun') || condition.includes('clear')) {
-        setBackgroundClass('sunny-bg');
+        if (isMorning) {
+          setBackgroundClass('sunny-morning-bg');
+        } else if (isAfternoon) {
+          setBackgroundClass('sunny-afternoon-bg');
+        } else if (isEvening) {
+          setBackgroundClass('sunny-evening-bg');
+        } else {
+          setBackgroundClass('sunny-afternoon-bg');
+        }
       } else if (condition.includes('rain') || condition.includes('storm')) {
-        setBackgroundClass('rainy-bg');
+        if (isMorning) {
+          setBackgroundClass('rainy-morning-bg');
+        } else if (isAfternoon) {
+          setBackgroundClass('rainy-afternoon-bg');
+        } else if (isEvening) {
+          setBackgroundClass('rainy-evening-bg');
+        } else {
+          setBackgroundClass('rainy-afternoon-bg');
+        }
       } else if (condition.includes('snow')) {
         setBackgroundClass('snowy-bg');
       } else if (condition.includes('cloud')) {
-        setBackgroundClass('cloudy-bg');
+        if (isMorning) {
+          setBackgroundClass('cloudy-morning-bg');
+        } else if (isAfternoon) {
+          setBackgroundClass('cloudy-afternoon-bg');
+        } else if (isEvening) {
+          setBackgroundClass('cloudy-evening-bg');
+        } else {
+          setBackgroundClass('cloudy-afternoon-bg');
+        }
       } else {
-        setBackgroundClass('sunny-bg');
+        setBackgroundClass('sunny-morning-bg');
       }
     }
   }, [weather]);
@@ -130,10 +156,10 @@ const IndexContent = () => {
 
   return (
     <div className={`min-h-screen transition-all duration-1000 ${backgroundClass}`}>
-      <div className="container mx-auto px-4 py-6 max-w-4xl">
+      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 max-w-4xl">
         <Header user={user} onLogout={handleLogout} />
         
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           <WeatherCard onWeatherUpdate={handleWeatherUpdate} />
           
           {weather && (
@@ -143,10 +169,10 @@ const IndexContent = () => {
             />
           )}
           
-          <div className="flex gap-4 mb-6">
+          <div className="flex gap-2 sm:gap-4 mb-4 sm:mb-6">
             <button
               onClick={() => setShowAIInsights(false)}
-              className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+              className={`px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base ${
                 !showAIInsights 
                   ? 'bg-white/30 text-white border border-white/30' 
                   : 'bg-white/10 text-white/70 hover:bg-white/20'
@@ -156,7 +182,7 @@ const IndexContent = () => {
             </button>
             <button
               onClick={() => setShowAIInsights(true)}
-              className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+              className={`px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base ${
                 showAIInsights 
                   ? 'bg-white/30 text-white border border-white/30' 
                   : 'bg-white/10 text-white/70 hover:bg-white/20'
@@ -173,8 +199,8 @@ const IndexContent = () => {
           )}
         </div>
         
-        <footer className="mt-12 text-center">
-          <p className="text-white/60 text-sm">
+        <footer className="mt-8 sm:mt-12 text-center">
+          <p className="text-white/60 text-xs sm:text-sm">
             {t('footer.madeWith')} ✨ Powered by AI Intelligence
           </p>
         </footer>

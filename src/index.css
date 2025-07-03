@@ -95,44 +95,81 @@
   }
 }
 
-/* Weather-based gradient backgrounds */
-.sunny-bg {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #dc2626 100%);
+/* Enhanced weather-based gradient backgrounds with time considerations */
+.sunny-morning-bg {
+  background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 30%, #f59e0b 70%, #d97706 100%);
 }
 
-.cloudy-bg {
-  background: linear-gradient(135deg, #64748b 0%, #475569 50%, #334155 100%);
+.sunny-afternoon-bg {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 40%, #dc2626 70%, #b91c1c 100%);
 }
 
-.rainy-bg {
-  background: linear-gradient(135deg, #2563eb 0%, #4338ca 50%, #7c3aed 100%);
+.sunny-evening-bg {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 30%, #fb923c 60%, #ea580c 100%);
+}
+
+.cloudy-morning-bg {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 30%, #94a3b8 70%, #64748b 100%);
+}
+
+.cloudy-afternoon-bg {
+  background: linear-gradient(135deg, #94a3b8 0%, #64748b 40%, #475569 70%, #334155 100%);
+}
+
+.cloudy-evening-bg {
+  background: linear-gradient(135deg, #64748b 0%, #475569 30%, #334155 60%, #1e293b 100%);
+}
+
+.rainy-morning-bg {
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 30%, #3b82f6 70%, #1d4ed8 100%);
+}
+
+.rainy-afternoon-bg {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 30%, #1d4ed8 60%, #1e40af 100%);
+}
+
+.rainy-evening-bg {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 30%, #312e81 60%, #1e1b4b 100%);
 }
 
 .snowy-bg {
-  background: linear-gradient(135deg, #e0e7ff 0%, #ffffff 50%, #d1d5db 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 30%, #cbd5e1 60%, #94a3b8 100%);
 }
 
 .clear-night-bg {
-  background: linear-gradient(135deg, #312e81 0%, #581c87 50%, #000000 100%);
+  background: linear-gradient(135deg, #312e81 0%, #1e1b4b 30%, #0f172a 60%, #000000 100%);
 }
 
 .night-bg {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #000000 100%);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 40%, #020617 70%, #000000 100%);
 }
 
-/* Glassmorphism effect */
+/* Glassmorphism effect with better contrast */
 .glass {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .glass-dark {
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Text color fixes for better visibility */
+.text-on-dark {
+  color: white !important;
+}
+
+.text-on-dark-secondary {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.text-on-dark-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 /* Smooth animations */
@@ -166,8 +203,8 @@
 }
 
 .hover-lift:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
 }
 
 .hover-glow {
