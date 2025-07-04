@@ -60,18 +60,18 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
   if (loading) {
     return (
       <div className="glass rounded-2xl p-4 sm:p-6 text-center slide-up">
-        <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-white/60 mx-auto mb-3 sm:mb-4"></div>
+        <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-orange-500 mx-auto mb-3 sm:mb-4"></div>
         <p className="text-white font-medium text-sm sm:text-base">Loading weather...</p>
       </div>
     );
   }
 
   return (
-    <div className="glass rounded-2xl p-4 sm:p-6 slide-up hover-glow">
+    <div className="glass rounded-2xl p-4 sm:p-6 slide-up hover-glow border border-white/20">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 space-y-2 sm:space-y-0">
         <h2 className="text-lg sm:text-2xl font-bold text-white flex items-center gap-2 sm:gap-3">
-          <div className="p-1.5 sm:p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+          <div className="p-1.5 sm:p-2 bg-orange-500/30 border border-orange-400/30 rounded-lg backdrop-blur-sm">
             ☀️
           </div>
           <span>Weather</span>
@@ -86,11 +86,11 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
           onChange={(e) => setLocationInput(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Enter Location"
-          className="flex-1 px-3 py-2.5 sm:px-4 sm:py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 backdrop-blur-sm text-sm sm:text-base transition-all duration-300"
+          className="flex-1 px-3 py-2.5 sm:px-4 sm:py-3 bg-white/20 border border-blue-400/30 rounded-xl text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-400/50 backdrop-blur-sm text-sm sm:text-base transition-all duration-300"
         />
         <button
           onClick={searchWeather}
-          className="px-4 py-2.5 sm:px-6 sm:py-3 bg-white/25 hover:bg-white/35 text-white rounded-xl transition-all duration-300 font-medium backdrop-blur-sm border border-white/20 hover:border-white/40 text-sm sm:text-base min-w-[60px] sm:min-w-[80px] flex items-center justify-center"
+          className="px-4 py-2.5 sm:px-6 sm:py-3 bg-orange-500/30 hover:bg-orange-500/50 text-white rounded-xl transition-all duration-300 font-medium backdrop-blur-sm border border-orange-400/30 hover:border-orange-400/50 text-sm sm:text-base min-w-[60px] sm:min-w-[80px] flex items-center justify-center"
         >
           🔍
         </button>
@@ -107,16 +107,16 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
       {weather && (
         <div className="space-y-4 sm:space-y-6">
           {/* Main Weather Info */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0 bg-white/10 rounded-xl p-4 border border-white/20">
             <div className="flex-1">
               <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{weather.location}</h3>
-              <p className="text-white/80 capitalize text-sm sm:text-base">{weather.condition}</p>
+              <p className="text-white/90 capitalize text-sm sm:text-base font-medium">{weather.condition}</p>
             </div>
             <div className="text-center sm:text-right">
-              <p className="text-2xl sm:text-4xl font-bold text-white mb-1">
+              <p className="text-3xl sm:text-4xl font-bold text-orange-400 mb-1">
                 {Math.round(weather.temperature)}°C
               </p>
-              <p className="text-white/70 text-xs sm:text-sm">
+              <p className="text-white/80 text-xs sm:text-sm">
                 Feels like {Math.round(weather.temperature)}°C
               </p>
             </div>
@@ -124,18 +124,18 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ onWeatherUpdate }) => {
           
           {/* Weather Details Grid */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <div className="bg-white/15 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-white/10 hover-lift">
+            <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-3 sm:p-4 backdrop-blur-sm hover-lift transition-all duration-300">
               <div className="flex items-center gap-2 mb-1 sm:mb-2">
                 <span className="text-lg sm:text-xl">💧</span>
-                <p className="text-white/80 text-xs sm:text-sm font-medium">Humidity</p>
+                <p className="text-white/90 text-xs sm:text-sm font-medium">Humidity</p>
               </div>
               <p className="text-white font-bold text-base sm:text-lg">{weather.humidity}%</p>
             </div>
             
-            <div className="bg-white/15 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-white/10 hover-lift">
+            <div className="bg-orange-500/20 border border-orange-400/30 rounded-xl p-3 sm:p-4 backdrop-blur-sm hover-lift transition-all duration-300">
               <div className="flex items-center gap-2 mb-1 sm:mb-2">
                 <span className="text-lg sm:text-xl">💨</span>
-                <p className="text-white/80 text-xs sm:text-sm font-medium">Wind Speed</p>
+                <p className="text-white/90 text-xs sm:text-sm font-medium">Wind Speed</p>
               </div>
               <p className="text-white font-bold text-base sm:text-lg">{weather.windSpeed} km/h</p>
             </div>
