@@ -30,14 +30,21 @@ const IndexContent = () => {
   }, []);
 
   useEffect(() => {
-    // Enhanced background logic based on weather and time of day
+    // Enhanced background logic based on weather and Indian time zones
     if (weather) {
       const condition = weather.condition.toLowerCase();
-      const currentHour = new Date().getHours();
-      const isNight = currentHour < 6 || currentHour > 19;
-      const isMorning = currentHour >= 6 && currentHour < 12;
-      const isAfternoon = currentHour >= 12 && currentHour < 17;
-      const isEvening = currentHour >= 17 && currentHour <= 19;
+      
+      // Get current time in Indian timezone (IST)
+      const now = new Date();
+      const istTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+      const currentHour = istTime.getHours();
+      
+      // Indian timing: Day (7am-6pm), Evening (6pm-8pm), Night (8pm-7am)
+      const isDay = currentHour >= 7 && currentHour < 18; // 7am to 6pm
+      const isEvening = currentHour >= 18 && currentHour < 20; // 6pm to 8pm
+      const isNight = currentHour >= 20 || currentHour < 7; // 8pm to 7am
+      const isMorning = currentHour >= 7 && currentHour < 12; // 7am to 12pm
+      const isAfternoon = currentHour >= 12 && currentHour < 18; // 12pm to 6pm
       
       if (isNight) {
         if (condition.includes('clear')) {
@@ -47,38 +54,39 @@ const IndexContent = () => {
         }
       } else if (condition.includes('sun') || condition.includes('clear')) {
         if (isMorning) {
-          setBackgroundClass('sunny-morning-bg');
+          setBackgroundClass('sunny-morning-bg'); // More vibrant morning colors
         } else if (isAfternoon) {
-          setBackgroundClass('sunny-afternoon-bg');
+          setBackgroundClass('sunny-afternoon-bg'); // Bright afternoon colors
         } else if (isEvening) {
           setBackgroundClass('sunny-evening-bg');
         } else {
           setBackgroundClass('sunny-afternoon-bg');
         }
       } else if (condition.includes('rain') || condition.includes('storm')) {
-        if (isMorning) {
-          setBackgroundClass('rainy-morning-bg');
-        } else if (isAfternoon) {
-          setBackgroundClass('rainy-afternoon-bg');
+        if (isDay) {
+          setBackgroundClass('rainy-morning-bg'); // Brighter rainy day colors
         } else if (isEvening) {
           setBackgroundClass('rainy-evening-bg');
         } else {
-          setBackgroundClass('rainy-afternoon-bg');
+          setBackgroundClass('rainy-evening-bg');
         }
       } else if (condition.includes('snow')) {
         setBackgroundClass('snowy-bg');
       } else if (condition.includes('cloud')) {
-        if (isMorning) {
-          setBackgroundClass('cloudy-morning-bg');
-        } else if (isAfternoon) {
-          setBackgroundClass('cloudy-afternoon-bg');
+        if (isDay) {
+          setBackgroundClass('cloudy-morning-bg'); // Brighter cloudy day colors
         } else if (isEvening) {
           setBackgroundClass('cloudy-evening-bg');
         } else {
-          setBackgroundClass('cloudy-afternoon-bg');
+          setBackgroundClass('cloudy-evening-bg');
         }
       } else {
-        setBackgroundClass('sunny-morning-bg');
+        // Default to bright morning colors during day
+        if (isDay) {
+          setBackgroundClass('sunny-morning-bg');
+        } else {
+          setBackgroundClass('night-bg');
+        }
       }
     }
   }, [weather]);
