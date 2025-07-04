@@ -43,7 +43,7 @@
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background: linear-gradient(45deg, #2563eb, #ea580c);
+  background: linear-gradient(45deg, #4f7bb8, #d67b47);
   cursor: pointer;
   border: 2px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -53,7 +53,7 @@
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background: linear-gradient(45deg, #2563eb, #ea580c);
+  background: linear-gradient(45deg, #4f7bb8, #d67b47);
   cursor: pointer;
   border: 2px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -95,68 +95,148 @@
   }
 }
 
-/* Enhanced weather-based gradient backgrounds with Blue/Orange/Black/White color scheme */
+/* Enhanced weather-based gradient backgrounds with refined Blue/Orange/Black/White color scheme */
+
+/* DAY TIME BACKGROUNDS - Bright and vibrant */
 .sunny-morning-bg {
-  background: linear-gradient(135deg, #ffffff 0%, #fb923c 20%, #ea580c 40%, #dc2626 70%, #000000 100%);
+  background: linear-gradient(135deg, 
+    #f8fafc 0%,          /* Soft white */
+    #e2e8f0 15%,         /* Light gray-blue */
+    #94a3b8 35%,         /* Muted blue */
+    #f97316 65%,         /* Warm orange */
+    #ea580c 85%,         /* Deep orange */
+    #1e293b 100%         /* Dark slate */
+  );
 }
 
 .sunny-afternoon-bg {
-  background: linear-gradient(135deg, #fed7aa 0%, #fb923c 20%, #ea580c 40%, #dc2626 70%, #000000 100%);
+  background: linear-gradient(135deg, 
+    #fef3e2 0%,          /* Warm white */
+    #fed7aa 20%,         /* Light orange */
+    #fb923c 40%,         /* Medium orange */
+    #6366f1 70%,         /* Soft blue */
+    #3730a3 90%,         /* Deep blue */
+    #0f172a 100%         /* Near black */
+  );
 }
 
 .sunny-evening-bg {
-  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 30%, #fb923c 60%, #ea580c 100%);
+  background: linear-gradient(135deg, 
+    #fff7ed 0%,          /* Warm cream */
+    #ffedd5 25%,         /* Light peach */
+    #fed7aa 50%,         /* Soft orange */
+    #f97316 75%,         /* Orange */
+    #1e40af 100%         /* Deep blue */
+  );
 }
 
 .cloudy-morning-bg {
-  background: linear-gradient(135deg, #ffffff 0%, #3b82f6 20%, #1d4ed8 40%, #1e40af 70%, #000000 100%);
+  background: linear-gradient(135deg, 
+    #f1f5f9 0%,          /* Light blue-white */
+    #cbd5e1 25%,         /* Soft blue-gray */
+    #64748b 50%,         /* Medium blue-gray */
+    #334155 75%,         /* Dark blue-gray */
+    #0f172a 100%         /* Near black */
+  );
 }
 
 .cloudy-afternoon-bg {
-  background: linear-gradient(135deg, #dbeafe 0%, #3b82f6 30%, #1d4ed8 60%, #1e40af 100%);
-}
-
-.cloudy-evening-bg {
-  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 30%, #312e81 60%, #000000 100%);
+  background: linear-gradient(135deg, 
+    #e0f2fe 0%,          /* Very light blue */
+    #bae6fd 30%,         /* Light blue */
+    #0ea5e9 60%,         /* Sky blue */
+    #0369a1 85%,         /* Deep blue */
+    #1e293b 100%         /* Dark slate */
+  );
 }
 
 .rainy-morning-bg {
-  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 20%, #3b82f6 40%, #1d4ed8 70%, #000000 100%);
+  background: linear-gradient(135deg, 
+    #f0f9ff 0%,          /* Very light blue */
+    #c7d2fe 25%,         /* Soft lavender-blue */
+    #6366f1 50%,         /* Indigo */
+    #3730a3 75%,         /* Deep indigo */
+    #1e1b4b 100%         /* Dark indigo */
+  );
 }
 
 .rainy-afternoon-bg {
-  background: linear-gradient(135deg, #bfdbfe 0%, #3b82f6 30%, #1d4ed8 60%, #1e40af 100%);
+  background: linear-gradient(135deg, 
+    #dbeafe 0%,          /* Light blue */
+    #93c5fd 30%,         /* Sky blue */
+    #3b82f6 60%,         /* Blue */
+    #1d4ed8 85%,         /* Deep blue */
+    #1e293b 100%         /* Dark slate */
+  );
+}
+
+/* EVENING/NIGHT BACKGROUNDS - Muted and darker tones */
+.cloudy-evening-bg {
+  background: linear-gradient(135deg, 
+    #475569 0%,          /* Medium slate */
+    #334155 30%,         /* Dark slate */
+    #1e293b 60%,         /* Darker slate */
+    #0f172a 85%,         /* Very dark */
+    #000000 100%         /* Black */
+  );
 }
 
 .rainy-evening-bg {
-  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 30%, #312e81 60%, #000000 100%);
+  background: linear-gradient(135deg, 
+    #3730a3 0%,          /* Deep indigo */
+    #312e81 25%,         /* Dark indigo */
+    #1e1b4b 50%,         /* Very dark indigo */
+    #0f172a 75%,         /* Near black */
+    #000000 100%         /* Black */
+  );
 }
 
 .snowy-bg {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 20%, #e2e8f0 40%, #94a3b8 70%, #000000 100%);
+  background: linear-gradient(135deg, 
+    #f8fafc 0%,          /* Pure white */
+    #e2e8f0 25%,         /* Light blue-white */
+    #cbd5e1 50%,         /* Soft blue-gray */
+    #64748b 75%,         /* Medium blue-gray */
+    #334155 100%         /* Dark blue-gray */
+  );
 }
 
 .clear-night-bg {
-  background: linear-gradient(135deg, #312e81 0%, #1e1b4b 30%, #0f172a 60%, #000000 100%);
+  background: linear-gradient(135deg, 
+    #312e81 0%,          /* Deep indigo */
+    #1e1b4b 25%,         /* Very dark indigo */
+    #0f172a 50%,         /* Near black */
+    #020617 75%,         /* Almost black */
+    #000000 100%         /* Pure black */
+  );
 }
 
 .night-bg {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 40%, #020617 70%, #000000 100%);
+  background: linear-gradient(135deg, 
+    #1e293b 0%,          /* Dark slate */
+    #0f172a 30%,         /* Very dark slate */
+    #020617 60%,         /* Almost black */
+    #000000 100%         /* Pure black */
+  );
 }
 
-/* Glassmorphism effect with Blue/Orange/Black/White theme */
+/* Glassmorphism effect with refined Blue/Orange/Black/White theme */
 .glass {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .glass-dark {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* Text color fixes for better visibility */
@@ -165,20 +245,20 @@
 }
 
 .text-on-dark-secondary {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
 .text-on-dark-muted {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
 }
 
 /* Smooth animations */
 .fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
 .slide-up {
-  animation: slideUp 0.5s ease-out;
+  animation: slideUp 0.6s ease-out;
 }
 
 @keyframes fadeIn {
@@ -189,7 +269,7 @@
 @keyframes slideUp {
   from { 
     opacity: 0; 
-    transform: translateY(20px); 
+    transform: translateY(24px); 
   }
   to { 
     opacity: 1; 
@@ -197,22 +277,42 @@
   }
 }
 
-/* Hover effects */
+/* Enhanced hover effects */
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-lift:hover {
-  transform: scale(1.02);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .hover-glow {
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 0 30px rgba(99, 102, 241, 0.2),
+    0 0 60px rgba(249, 115, 22, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Neon glow effects for interactive elements */
+.neon-blue {
+  box-shadow: 
+    0 0 10px rgba(99, 102, 241, 0.3),
+    0 0 20px rgba(99, 102, 241, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.neon-orange {
+  box-shadow: 
+    0 0 10px rgba(249, 115, 22, 0.3),
+    0 0 20px rgba(249, 115, 22, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Z-index utilities for proper layering */
@@ -222,4 +322,13 @@
 
 .z-modal {
   z-index: 200;
+}
+
+/* Pastel accent colors */
+.pastel-blue-bg {
+  background: linear-gradient(135deg, rgba(147, 197, 253, 0.3), rgba(99, 102, 241, 0.2));
+}
+
+.pastel-orange-bg {
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.3), rgba(249, 115, 22, 0.2));
 }
