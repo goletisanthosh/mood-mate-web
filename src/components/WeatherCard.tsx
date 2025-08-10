@@ -110,19 +110,19 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
       {weather && (
         <div className="space-y-6">
           {/* Main Weather Info */}
-          <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <h3 className="text-xl font-bold text-white mb-1 text-center">{weather.location}</h3>
-              <p className="text-white/85 capitalize text-center">{weather.condition}</p>
+          <div className="text-center mb-4">
+            <h3 className="text-xl font-bold text-white mb-2">{weather.location}</h3>
+            <div className="flex items-center justify-center gap-4">
+              <div className="text-center">
+                <p className="text-4xl font-bold text-white mb-1">
+                  {Math.round(weather.temperature)}°C
+                </p>
+                <p className="text-white/75 text-sm">
+                  Feels like {Math.round(weather.temperature)}°C
+                </p>
+              </div>
             </div>
-            <div className="text-right">
-              <p className="text-4xl font-bold text-white mb-1">
-                {Math.round(weather.temperature)}°C
-              </p>
-              <p className="text-white/75 text-sm">
-                Feels like {Math.round(weather.temperature)}°C
-              </p>
-            </div>
+            <p className="text-white/85 capitalize mt-2">{weather.condition}</p>
           </div>
           
           {/* Weather Details Grid */}

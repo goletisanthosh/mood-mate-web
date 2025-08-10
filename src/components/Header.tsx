@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
             </button>
             
             {isMenuOpen && (
-              <div className="absolute right-0 top-16 bg-white/95 backdrop-blur-md rounded-xl p-6 min-w-80 z-[100] slide-up shadow-2xl border border-white/30">
+              <div className="absolute right-0 top-16 bg-white/95 backdrop-blur-md rounded-xl p-4 w-72 sm:w-80 z-[100] slide-up shadow-2xl border border-white/30">
                 <div className="text-gray-800 mb-4 pb-4 border-b border-gray-200">
                   <div className="flex items-center space-x-3 mb-3">
                     <UserIcon size={18} className="text-gray-600" />

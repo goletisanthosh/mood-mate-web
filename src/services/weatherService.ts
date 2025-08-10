@@ -78,9 +78,59 @@ export class WeatherService {
   }
 
   static async getWeatherByCity(city: string): Promise<WeatherData> {
-    const weather = await this.fetchWeather(`q=${encodeURIComponent(city)}`);
-    this.cacheWeather(weather);
-    return weather;
+    try {
+      const weather = await this.fetchWeather(`q=${encodeURIComponent(city)}`);
+      this.cacheWeather(weather);
+      return weather;
+    } catch (error) {
+      console.error('Error fetching weather by city:', error);
+      
+      // Try fallback strategies for rural locations
+      const fallbackStrategies = [
+        // Try with state/country suffix for Indian locations
+        `${city}, India`,
+        `${city}, IN`,
+        // Try nearby major cities based on common patterns
+        ...this.getNearbyMajorCities(city)
+      ];
+
+      for (const fallbackLocation of fallbackStrategies) {
+        try {
+          console.log(`Trying fallback location: ${fallbackLocation}`);
+          const fallbackWeather = await this.fetchWeather(`q=${encodeURIComponent(fallbackLocation)}`);
+          // Update location to show it's approximate
+          fallbackWeather.location = `${city} (nearby: ${fallbackWeather.location})`;
+          this.cacheWeather(fallbackWeather);
+          return fallbackWeather;
+        } catch (fallbackError) {
+          console.log(`Fallback ${fallbackLocation} also failed`);
+          continue;
+        }
+      }
+      
+      throw error;
+    }
+  }
+
+  private static getNearbyMajorCities(city: string): string[] {
+    const cityLower = city.toLowerCase();
+    
+    // Common rural area mappings to major cities
+    const ruralMappings: { [key: string]: string[] } = {
+      // Telangana rural areas
+      'chennoor': ['Adilabad', 'Mancherial', 'Nirmal'],
+      'moinabad': ['Hyderabad', 'Rangareddy', 'Shankarpally'],
+      'patancheru': ['Hyderabad', 'Medak'],
+      'lingampalli': ['Hyderabad', 'Rangareddy'],
+      
+      // Andhra Pradesh rural areas  
+      'vizag': ['Visakhapatnam', 'Vishakhapatnam'],
+      'darsi': ['Prakasam', 'Ongole'],
+      
+      // Add more mappings as needed
+    };
+
+    return ruralMappings[cityLower] || [];
   }
 
   private static cacheWeather(weather: WeatherData) {
