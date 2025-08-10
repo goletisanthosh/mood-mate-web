@@ -101,6 +101,20 @@ export class RecommendationService {
     }
   }
 
+  static async getRecommendationsByWeatherAndMood(weather: WeatherData, mood: string): Promise<MoodRecommendations> {
+    try {
+      // Try to get AI-powered recommendations with specific mood
+      console.log('Attempting to get AI recommendations for mood:', mood);
+      const aiRecommendations = await AIRecommendationService.getAIRecommendations(weather, mood);
+      console.log('AI recommendations successful for mood:', aiRecommendations);
+      return aiRecommendations;
+    } catch (error) {
+      console.error('AI recommendations failed, falling back to static mood-based recommendations:', error);
+      // Fallback to static recommendations based on mood
+      return this.getRecommendationsByMood(mood);
+    }
+  }
+
   static getMoodFromWeather(weather: WeatherData): string {
     if (weather.condition.toLowerCase().includes('sun') || weather.condition.toLowerCase().includes('clear')) {
       return 'happy';

@@ -131,7 +131,7 @@ const IndexContent = () => {
     if (weather) {
       try {
         console.log('Getting AI recommendations for mood change:', mood);
-        const newRecommendations = await RecommendationService.getRecommendations(weather);
+        const newRecommendations = await RecommendationService.getRecommendationsByWeatherAndMood(weather, mood);
         setRecommendations(newRecommendations);
       } catch (error) {
         console.error('Failed to get mood-based recommendations:', error);

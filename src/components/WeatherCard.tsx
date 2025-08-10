@@ -82,18 +82,18 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
       </div>
 
       {/* Search Input */}
-      <div className="flex gap-3 mb-6">
+      <div className="flex gap-2 sm:gap-3 mb-6">
         <input 
           type="text" 
           value={locationInput} 
           onChange={e => setLocationInput(e.target.value)} 
           onKeyPress={handleKeyPress} 
           placeholder="Enter Location" 
-          className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 backdrop-blur-sm transition-all duration-300" 
+          className="flex-1 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 backdrop-blur-sm transition-all duration-300" 
         />
         <button 
           onClick={searchWeather} 
-          className="px-6 py-3 bg-gradient-to-r from-orange-400/20 to-blue-400/20 hover:from-orange-400/30 hover:to-blue-400/30 text-white rounded-xl transition-all duration-300 font-medium backdrop-blur-sm border border-white/20 hover:border-white/30 min-w-[80px] flex items-center justify-center hover-lift"
+          className="px-3 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-orange-400/20 to-blue-400/20 hover:from-orange-400/30 hover:to-blue-400/30 text-white rounded-xl transition-all duration-300 font-medium backdrop-blur-sm border border-white/20 hover:border-white/30 min-w-[60px] sm:min-w-[80px] flex items-center justify-center hover-lift text-sm sm:text-base"
         >
           🔍
         </button>
