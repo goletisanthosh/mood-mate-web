@@ -19,6 +19,25 @@ export interface WeatherData {
   icon: string;
 }
 
+export interface LocationData {
+  latitude: number;
+  longitude: number;
+}
+
+export interface PlaceResult {
+  id: string;
+  name: string;
+  address: string;
+  rating?: number;
+  priceLevel?: number;
+  photoUrl?: string;
+  distance?: number;
+  phoneNumber?: string;
+  website?: string;
+  openingHours?: string[];
+  types: string[];
+}
+
 export interface FoodRecommendation {
   name: string;
   description: string;

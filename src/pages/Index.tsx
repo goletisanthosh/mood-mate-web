@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { AuthService } from '../services/authService';
 import { RecommendationService } from '../services/recommendationService';
-import { User, WeatherData, MoodRecommendations } from '../types';
+import { User, WeatherData, MoodRecommendations, LocationData } from '../types';
 import AuthForm from '../components/AuthForm';
 import Header from '../components/Header';
 import WeatherCard from '../components/WeatherCard';
 import RecommendationsSection from '../components/RecommendationsSection';
 import MoodSelector from '../components/MoodSelector';
 import AIInsights from '../components/AIInsights';
+import PlacesSection from '../components/PlacesSection';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
+import { useLocationPlaces } from '../hooks/useLocationPlaces';
+import { Hotel, UtensilsCrossed } from 'lucide-react';
 
 const IndexContent = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -18,7 +21,11 @@ const IndexContent = () => {
   const [backgroundClass, setBackgroundClass] = useState('sunny-bg');
   const [showAIInsights, setShowAIInsights] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
   const { t } = useLanguage();
+
+  // Get real-time places data based on location
+  const { hotels, restaurants, loading: placesLoading, error: placesError, refetch } = useLocationPlaces(currentLocation);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -104,6 +111,38 @@ const IndexContent = () => {
 
   const handleWeatherUpdate = async (weatherData: WeatherData) => {
     setWeather(weatherData);
+    
+    // Extract coordinates from weather location for places API
+    // Note: You might need to geocode the location name to get coordinates
+    // For now, we'll use a placeholder - you should implement proper geocoding
+    const extractLocationCoordinates = async (locationName: string): Promise<LocationData | null> => {
+      // This is a simplified example - you should implement proper geocoding
+      // Using a service like Google Geocoding API
+      try {
+        // For demonstration, using some hardcoded coordinates
+        // In real implementation, geocode the location name
+        const response = await fetch(
+          `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(locationName)}&limit=1&appid=716e02c95b29ff76212e39800512e9fa`
+        );
+        const data = await response.json();
+        
+        if (data.length > 0) {
+          return {
+            latitude: data[0].lat,
+            longitude: data[0].lon
+          };
+        }
+      } catch (error) {
+        console.error('Failed to geocode location:', error);
+      }
+      return null;
+    };
+    
+    // Set location for places API
+    const coords = await extractLocationCoordinates(weatherData.location);
+    if (coords) {
+      setCurrentLocation(coords);
+    }
     
     // Set initial mood based on weather if no mood is selected
     if (!selectedMood) {
@@ -204,6 +243,27 @@ const IndexContent = () => {
             <AIInsights />
           ) : (
             <RecommendationsSection recommendations={recommendations} />
+          )}
+
+          {/* Real-time Places Section */}
+          {currentLocation && (
+            <div className="grid gap-4 sm:gap-6">
+              <PlacesSection
+                title="Nearby Hotels & Stays"
+                places={hotels}
+                loading={placesLoading}
+                error={placesError}
+                icon={<Hotel className="w-6 h-6 text-blue-300" />}
+              />
+              
+              <PlacesSection
+                title="Food & Restaurants"
+                places={restaurants}
+                loading={placesLoading}
+                error={placesError}
+                icon={<UtensilsCrossed className="w-6 h-6 text-orange-300" />}
+              />
+            </div>
           )}
         </div>
         
