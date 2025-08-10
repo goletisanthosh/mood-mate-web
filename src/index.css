@@ -87,60 +87,81 @@
   }
 }
 
-/* Refined Day/Night Background Gradients */
+/* Enhanced Day/Night Background Gradients - Vibrant Days & Pastel Nights */
 
-/* DAY BACKGROUNDS - Clean and bright */
+/* DAY BACKGROUNDS - Vibrant and energetic */
 .sunny-morning-bg {
   background: linear-gradient(135deg, 
-    #ffffff 0%,
-    #e0f2fe 25%,
-    #81d4fa 50%,
-    #ffcc80 75%,
-    #ff8a65 100%
+    #ff9a56 0%,
+    #ffad56 25%,
+    #4fc3f7 50%,
+    #29b6f6 75%,
+    #0277bd 100%
   );
 }
 
 .sunny-afternoon-bg {
   background: linear-gradient(135deg, 
-    #fff3e0 0%,
-    #ffe0b2 25%,
+    #ff7043 0%,
+    #ff8a65 25%,
     #ffb74d 50%,
-    #64b5f6 75%,
-    #42a5f5 100%
+    #42a5f5 75%,
+    #1976d2 100%
   );
 }
 
 .sunny-evening-bg {
   background: linear-gradient(135deg, 
-    #fff8e1 0%,
-    #ffecb3 30%,
-    #ffb74d 60%,
-    #ff8a65 85%,
-    #5c6bc0 100%
+    #ff6f00 0%,
+    #ff8f00 30%,
+    #ffb300 60%,
+    #1e88e5 85%,
+    #0d47a1 100%
   );
 }
 
 .cloudy-morning-bg {
   background: linear-gradient(135deg, 
-    #f8f9fa 0%,
-    #e9ecef 25%,
-    #adb5bd 50%,
-    #6c757d 75%,
-    #495057 100%
+    #64b5f6 0%,
+    #42a5f5 25%,
+    #2196f3 50%,
+    #1976d2 75%,
+    #0d47a1 100%
   );
 }
 
 .cloudy-afternoon-bg {
   background: linear-gradient(135deg, 
-    #e3f2fd 0%,
-    #bbdefb 25%,
-    #90caf9 50%,
-    #64b5f6 75%,
-    #2196f3 100%
+    #81d4fa 0%,
+    #4fc3f7 25%,
+    #29b6f6 50%,
+    #1e88e5 75%,
+    #1565c0 100%
   );
 }
 
 .rainy-morning-bg {
+  background: linear-gradient(135deg, 
+    #5c6bc0 0%,
+    #7986cb 25%,
+    #9575cd 50%,
+    #ba68c8 75%,
+    #ab47bc 100%
+  );
+}
+
+.rainy-afternoon-bg {
+  background: linear-gradient(135deg, 
+    #4fc3f7 0%,
+    #29b6f6 25%,
+    #1e88e5 50%,
+    #1976d2 75%,
+    #1565c0 100%
+  );
+}
+
+/* EVENING/NIGHT BACKGROUNDS - Soft pastels and light tones */
+.cloudy-evening-bg {
   background: linear-gradient(135deg, 
     #e8eaf6 0%,
     #c5cae9 25%,
@@ -150,64 +171,43 @@
   );
 }
 
-.rainy-afternoon-bg {
-  background: linear-gradient(135deg, 
-    #e1f5fe 0%,
-    #b3e5fc 25%,
-    #81d4fa 50%,
-    #29b6f6 75%,
-    #0288d1 100%
-  );
-}
-
-/* EVENING/NIGHT BACKGROUNDS - Muted and sophisticated */
-.cloudy-evening-bg {
-  background: linear-gradient(135deg, 
-    #37474f 0%,
-    #263238 25%,
-    #1c2833 50%,
-    #17202a 75%,
-    #0b0c10 100%
-  );
-}
-
 .rainy-evening-bg {
   background: linear-gradient(135deg, 
-    #3f51b5 0%,
-    #303f9f 25%,
-    #283593 50%,
-    #1a237e 75%,
-    #0d1421 100%
+    #f3e5f5 0%,
+    #e1bee7 25%,
+    #ce93d8 50%,
+    #ba68c8 75%,
+    #ab47bc 100%
   );
 }
 
 .snowy-bg {
   background: linear-gradient(135deg, 
-    #ffffff 0%,
-    #f5f5f5 25%,
-    #e0e0e0 50%,
-    #bdbdbd 75%,
-    #757575 100%
+    #f8bbd9 0%,
+    #f48fb1 25%,
+    #f06292 50%,
+    #ec407a 75%,
+    #e91e63 100%
   );
 }
 
 .clear-night-bg {
   background: linear-gradient(135deg, 
-    #1a237e 0%,
-    #0d1421 25%,
-    #0a0e27 50%,
-    #050505 75%,
-    #000000 100%
+    #e8eaf6 0%,
+    #c5cae9 25%,
+    #9fa8da 50%,
+    #7986cb 75%,
+    #5c6bc0 100%
   );
 }
 
 .night-bg {
   background: linear-gradient(135deg, 
-    #263238 0%,
-    #1c2833 25%,
-    #17202a 50%,
-    #0b0c10 75%,
-    #000000 100%
+    #f3e5f5 0%,
+    #e1bee7 25%,
+    #ce93d8 50%,
+    #ba68c8 75%,
+    #ab47bc 100%
   );
 }
 
