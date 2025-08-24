@@ -295,6 +295,46 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
+/* Contrast-aware text colors for light backgrounds */
+.text-dark-contrast {
+  color: hsl(222.2, 84%, 4.9%) !important; /* Very dark text for light backgrounds */
+}
+
+.text-dark-contrast h1,
+.text-dark-contrast h2,
+.text-dark-contrast h3,
+.text-dark-contrast h4,
+.text-dark-contrast h5,
+.text-dark-contrast h6 {
+  color: hsl(222.2, 84%, 4.9%) !important;
+}
+
+.text-dark-contrast p,
+.text-dark-contrast span,
+.text-dark-contrast div {
+  color: hsl(222.2, 47.4%, 11.2%) !important;
+}
+
+/* Light text for dark backgrounds */
+.text-light-contrast {
+  color: hsl(210, 40%, 98%) !important;
+}
+
+.text-light-contrast h1,
+.text-light-contrast h2,
+.text-light-contrast h3,
+.text-light-contrast h4,
+.text-light-contrast h5,
+.text-light-contrast h6 {
+  color: hsl(210, 40%, 98%) !important;
+}
+
+.text-light-contrast p,
+.text-light-contrast span,
+.text-light-contrast div {
+  color: hsl(210, 40%, 95%) !important;
+}
+
 /* Z-index utilities */
 .z-dropdown {
   z-index: 50;

@@ -19,6 +19,7 @@ const IndexContent = () => {
   const [recommendations, setRecommendations] = useState<MoodRecommendations | null>(null);
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [backgroundClass, setBackgroundClass] = useState('sunny-bg');
+  const [textColorClass, setTextColorClass] = useState('');
   const [showAIInsights, setShowAIInsights] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
@@ -56,43 +57,58 @@ const IndexContent = () => {
       if (isNight) {
         if (condition.includes('clear')) {
           setBackgroundClass('clear-night-bg');
+          setTextColorClass('text-dark-contrast'); // Light background needs dark text
         } else {
           setBackgroundClass('night-bg');
+          setTextColorClass('text-dark-contrast'); // Light background needs dark text
         }
       } else if (condition.includes('sun') || condition.includes('clear')) {
         if (isMorning) {
           setBackgroundClass('sunny-morning-bg'); // More vibrant morning colors
+          setTextColorClass('text-light-contrast'); // Dark background needs light text
         } else if (isAfternoon) {
           setBackgroundClass('sunny-afternoon-bg'); // Bright afternoon colors
+          setTextColorClass('text-light-contrast'); // Dark background needs light text
         } else if (isEvening) {
           setBackgroundClass('sunny-evening-bg');
+          setTextColorClass('text-light-contrast'); // Dark background needs light text
         } else {
           setBackgroundClass('sunny-afternoon-bg');
+          setTextColorClass('text-light-contrast'); // Dark background needs light text
         }
       } else if (condition.includes('rain') || condition.includes('storm')) {
         if (isDay) {
           setBackgroundClass('rainy-morning-bg'); // Brighter rainy day colors
+          setTextColorClass('text-light-contrast'); // Dark background needs light text
         } else if (isEvening) {
           setBackgroundClass('rainy-evening-bg');
+          setTextColorClass('text-dark-contrast'); // Light background needs dark text
         } else {
           setBackgroundClass('rainy-evening-bg');
+          setTextColorClass('text-dark-contrast'); // Light background needs dark text
         }
       } else if (condition.includes('snow')) {
         setBackgroundClass('snowy-bg');
+        setTextColorClass('text-dark-contrast'); // Light/pink background needs dark text
       } else if (condition.includes('cloud')) {
         if (isDay) {
           setBackgroundClass('cloudy-morning-bg'); // Brighter cloudy day colors
+          setTextColorClass('text-light-contrast'); // Dark background needs light text
         } else if (isEvening) {
           setBackgroundClass('cloudy-evening-bg');
+          setTextColorClass('text-dark-contrast'); // Light background needs dark text
         } else {
           setBackgroundClass('cloudy-evening-bg');
+          setTextColorClass('text-dark-contrast'); // Light background needs dark text
         }
       } else {
         // Default to bright morning colors during day
         if (isDay) {
           setBackgroundClass('sunny-morning-bg');
+          setTextColorClass('text-light-contrast'); // Dark background needs light text
         } else {
           setBackgroundClass('night-bg');
+          setTextColorClass('text-dark-contrast'); // Light background needs dark text
         }
       }
     }
@@ -194,15 +210,15 @@ const IndexContent = () => {
   }
 
   if (!user) {
-    return (
-      <div className={`min-h-screen transition-all duration-1000 ${backgroundClass}`}>
+  return (
+    <div className={`min-h-screen transition-all duration-1000 ${backgroundClass} ${textColorClass}`}>
         <AuthForm onAuthSuccess={handleAuthSuccess} />
       </div>
     );
   }
 
   return (
-    <div className={`min-h-screen transition-all duration-1000 ${backgroundClass}`}>
+    <div className={`min-h-screen transition-all duration-1000 ${backgroundClass} ${textColorClass}`}>
       <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 max-w-4xl">
         <Header user={user} onLogout={handleLogout} />
         
