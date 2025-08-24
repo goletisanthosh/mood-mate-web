@@ -77,7 +77,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onAuthSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4 auth-bg animate-fade-in">
       <div className="glass rounded-2xl p-8 w-full max-w-md slide-up">
         <div className="text-center mb-6">
           <div className="text-4xl mb-2">🌤️</div>

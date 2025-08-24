@@ -160,6 +160,17 @@
   );
 }
 
+/* AUTH PAGE BACKGROUND - Elegant gradient for authentication */
+.auth-bg {
+  background: linear-gradient(135deg, 
+    #667eea 0%,
+    #764ba2 25%,
+    #f093fb 50%,
+    #f5576c 75%,
+    #4facfe 100%
+  );
+}
+
 /* EVENING/NIGHT BACKGROUNDS - Soft pastels and light tones */
 .cloudy-evening-bg {
   background: linear-gradient(135deg, 
