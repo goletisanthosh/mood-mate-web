@@ -87,76 +87,77 @@
   }
 }
 
-/* Enhanced Day/Night Background Gradients - Vibrant Days & Pastel Nights */
+/* Enhanced Day/Night Background Gradients - Modern & Beautiful */
 
 /* DAY BACKGROUNDS - Vibrant and energetic */
 .sunny-morning-bg {
   background: linear-gradient(135deg, 
-    #ff9a56 0%,
-    #ffad56 25%,
-    #4fc3f7 50%,
-    #29b6f6 75%,
-    #0277bd 100%
+    #667eea 0%,
+    #764ba2 20%,
+    #f093fb 40%,
+    #f5576c 60%,
+    #4facfe 80%,
+    #00f2fe 100%
   );
 }
 
 .sunny-afternoon-bg {
   background: linear-gradient(135deg, 
-    #ff7043 0%,
-    #ff8a65 25%,
-    #ffb74d 50%,
-    #42a5f5 75%,
-    #1976d2 100%
+    #fa709a 0%,
+    #fee140 25%,
+    #fa709a 50%,
+    #667eea 75%,
+    #764ba2 100%
   );
 }
 
 .sunny-evening-bg {
   background: linear-gradient(135deg, 
-    #ff6f00 0%,
-    #ff8f00 30%,
-    #ffb300 60%,
-    #1e88e5 85%,
-    #0d47a1 100%
+    #ff9472 0%,
+    #f2709c 25%,
+    #ad5389 50%,
+    #3c1053 75%,
+    #2c1810 100%
   );
 }
 
 .cloudy-morning-bg {
   background: linear-gradient(135deg, 
-    #64b5f6 0%,
-    #42a5f5 25%,
-    #2196f3 50%,
-    #1976d2 75%,
-    #0d47a1 100%
+    #a8edea 0%,
+    #fed6e3 25%,
+    #d299c2 50%,
+    #fef9d7 75%,
+    #667eea 100%
   );
 }
 
 .cloudy-afternoon-bg {
   background: linear-gradient(135deg, 
-    #81d4fa 0%,
-    #4fc3f7 25%,
-    #29b6f6 50%,
-    #1e88e5 75%,
-    #1565c0 100%
+    #89f7fe 0%,
+    #66a6ff 25%,
+    #667eea 50%,
+    #764ba2 75%,
+    #f093fb 100%
   );
 }
 
 .rainy-morning-bg {
   background: linear-gradient(135deg, 
-    #5c6bc0 0%,
-    #7986cb 25%,
-    #9575cd 50%,
-    #ba68c8 75%,
-    #ab47bc 100%
+    #667eea 0%,
+    #764ba2 25%,
+    #667eea 50%,
+    #89f7fe 75%,
+    #66a6ff 100%
   );
 }
 
 .rainy-afternoon-bg {
   background: linear-gradient(135deg, 
-    #4fc3f7 0%,
-    #29b6f6 25%,
-    #1e88e5 50%,
-    #1976d2 75%,
-    #1565c0 100%
+    #48c6ef 0%,
+    #6f86d6 25%,
+    #667eea 50%,
+    #764ba2 75%,
+    #667eea 100%
   );
 }
 
@@ -171,54 +172,54 @@
   );
 }
 
-/* EVENING/NIGHT BACKGROUNDS - Soft pastels and light tones */
+/* EVENING/NIGHT BACKGROUNDS - Elegant and sophisticated */
 .cloudy-evening-bg {
   background: linear-gradient(135deg, 
-    #e8eaf6 0%,
-    #c5cae9 25%,
-    #9fa8da 50%,
-    #7986cb 75%,
-    #5c6bc0 100%
+    #ffecd2 0%,
+    #fcb69f 25%,
+    #ff9a9e 50%,
+    #fecfef 75%,
+    #fecfef 100%
   );
 }
 
 .rainy-evening-bg {
   background: linear-gradient(135deg, 
-    #f3e5f5 0%,
-    #e1bee7 25%,
-    #ce93d8 50%,
-    #ba68c8 75%,
-    #ab47bc 100%
+    #ffecd2 0%,
+    #fcb69f 25%,
+    #a8edea 50%,
+    #fed6e3 75%,
+    #ffecd2 100%
   );
 }
 
 .snowy-bg {
   background: linear-gradient(135deg, 
-    #f8bbd9 0%,
-    #f48fb1 25%,
-    #f06292 50%,
-    #ec407a 75%,
-    #e91e63 100%
+    #ffecd2 0%,
+    #fcb69f 25%,
+    #ff9a9e 50%,
+    #fad0c4 75%,
+    #ffd1ff 100%
   );
 }
 
 .clear-night-bg {
   background: linear-gradient(135deg, 
-    #e8eaf6 0%,
-    #c5cae9 25%,
-    #9fa8da 50%,
-    #7986cb 75%,
-    #5c6bc0 100%
+    #667eea 0%,
+    #764ba2 25%,
+    #667eea 50%,
+    #89f7fe 75%,
+    #66a6ff 100%
   );
 }
 
 .night-bg {
   background: linear-gradient(135deg, 
-    #f3e5f5 0%,
-    #e1bee7 25%,
-    #ce93d8 50%,
-    #ba68c8 75%,
-    #ab47bc 100%
+    #a8edea 0%,
+    #fed6e3 25%,
+    #ffecd2 50%,
+    #fcb69f 75%,
+    #ff9a9e 100%
   );
 }
 
