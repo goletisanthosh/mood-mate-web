@@ -92,8 +92,8 @@ const IndexContent = () => {
         setTextColorClass('text-dark-contrast'); // Light/pink background needs dark text
       } else if (condition.includes('cloud')) {
         if (isDay) {
-          setBackgroundClass('cloudy-morning-bg'); // Brighter cloudy day colors
-          setTextColorClass('text-light-contrast'); // Dark background needs light text
+          setBackgroundClass('cloudy-morning-bg'); // Light pastel colors
+          setTextColorClass('text-dark-contrast'); // Light background needs dark text
         } else if (isEvening) {
           setBackgroundClass('cloudy-evening-bg');
           setTextColorClass('text-dark-contrast'); // Light background needs dark text
