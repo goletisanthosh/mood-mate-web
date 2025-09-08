@@ -9,9 +9,10 @@ import RecommendationsSection from '../components/RecommendationsSection';
 import MoodSelector from '../components/MoodSelector';
 import AIInsights from '../components/AIInsights';
 import PlacesSection from '../components/PlacesSection';
+import WeatherAlerts from '../components/WeatherAlerts';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import { useLocationPlaces } from '../hooks/useLocationPlaces';
-import { Hotel, UtensilsCrossed } from 'lucide-react';
+import { Hotel, UtensilsCrossed, Bell } from 'lucide-react';
 
 const IndexContent = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -21,6 +22,8 @@ const IndexContent = () => {
   const [backgroundClass, setBackgroundClass] = useState('sunny-bg');
   const [textColorClass, setTextColorClass] = useState('');
   const [showAIInsights, setShowAIInsights] = useState(false);
+  const [showAlerts, setShowAlerts] = useState(false);
+  const [alertCount, setAlertCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
   const { t } = useLanguage();
@@ -223,7 +226,32 @@ const IndexContent = () => {
         <Header user={user} onLogout={handleLogout} />
         
         <div className="space-y-4 sm:space-y-6">
+          {/* Header with Weather Alerts Button */}
+          <div className="flex items-center justify-between">
+            <h1 className={`text-2xl sm:text-4xl font-bold ${textColorClass}`}>
+              Weather & Recommendations
+            </h1>
+            <button
+              onClick={() => setShowAlerts(!showAlerts)}
+              className={`relative p-2 rounded-full hover:bg-white/10 transition-colors ${textColorClass}`}
+              title="Weather Alerts"
+            >
+              <Bell className="h-6 w-6" />
+              {alertCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {alertCount}
+                </span>
+              )}
+            </button>
+          </div>
+
           <WeatherCard onWeatherUpdate={handleWeatherUpdate} />
+          
+          {showAlerts && (
+            <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
+              <WeatherAlerts onAlertsUpdate={setAlertCount} />
+            </div>
+          )}
           
           {weather && (
             <MoodSelector 

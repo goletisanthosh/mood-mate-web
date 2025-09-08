@@ -41,6 +41,45 @@ export type Database = {
         }
         Relationships: []
       }
+      alert_notifications: {
+        Row: {
+          alert_type: string
+          id: string
+          is_read: boolean | null
+          location: string
+          message: string
+          severity: string
+          temperature: number | null
+          triggered_at: string
+          user_id: string
+          weather_condition: string
+        }
+        Insert: {
+          alert_type: string
+          id?: string
+          is_read?: boolean | null
+          location: string
+          message: string
+          severity: string
+          temperature?: number | null
+          triggered_at?: string
+          user_id: string
+          weather_condition: string
+        }
+        Update: {
+          alert_type?: string
+          id?: string
+          is_read?: boolean | null
+          location?: string
+          message?: string
+          severity?: string
+          temperature?: number | null
+          triggered_at?: string
+          user_id?: string
+          weather_condition?: string
+        }
+        Relationships: []
+      }
       location_weather_history: {
         Row: {
           id: string
@@ -146,6 +185,39 @@ export type Database = {
           stay_preferences?: Json | null
           updated_at?: string | null
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      weather_alerts: {
+        Row: {
+          alert_type: string
+          created_at: string
+          id: string
+          is_enabled: boolean | null
+          notification_method: string | null
+          threshold_value: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          alert_type: string
+          created_at?: string
+          id?: string
+          is_enabled?: boolean | null
+          notification_method?: string | null
+          threshold_value?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          alert_type?: string
+          created_at?: string
+          id?: string
+          is_enabled?: boolean | null
+          notification_method?: string | null
+          threshold_value?: number | null
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }

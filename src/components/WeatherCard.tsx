@@ -30,6 +30,10 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
       const weatherData = await WeatherService.getWeatherByLocation();
       setWeather(weatherData);
       onWeatherUpdate(weatherData);
+      
+      // Check for weather alerts after getting weather data
+      const { WeatherAlertService } = await import('@/services/weatherAlertService');
+      await WeatherAlertService.checkAndTriggerAlerts(weatherData);
     } catch (err) {
       console.error('Weather fetch error:', err);
       setError('Unable to get current location weather. Please try entering a city name.');
@@ -46,6 +50,11 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
       const weatherData = await WeatherService.getWeatherByCity(locationInput.trim());
       setWeather(weatherData);
       onWeatherUpdate(weatherData);
+      setLocationInput('');
+      
+      // Check for weather alerts after getting weather data
+      const { WeatherAlertService } = await import('@/services/weatherAlertService');
+      await WeatherAlertService.checkAndTriggerAlerts(weatherData);
     } catch (err) {
       console.error('Weather search error:', err);
       setError('Unable to find weather for this location. Please try a different city.');
