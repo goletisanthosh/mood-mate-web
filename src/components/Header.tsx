@@ -48,26 +48,26 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
             </button>
             
             {isMenuOpen && (
-              <div className="absolute right-0 top-16 bg-white/95 backdrop-blur-md rounded-xl p-4 w-72 sm:w-80 z-[100] slide-up shadow-2xl border border-white/30">
-                <div className="text-black mb-4 pb-4 border-b border-gray-200">
+              <div className="absolute right-0 top-16 bg-white backdrop-blur-md rounded-xl p-4 w-72 sm:w-80 z-[100] slide-up shadow-2xl border border-white/30 text-dark-contrast">
+                <div className="mb-4 pb-4 border-b border-gray-200">
                   <div className="flex items-center space-x-3 mb-3">
-                    <UserIcon size={18} className="text-black" />
-                    <span className="font-semibold text-lg text-black">{user.name}</span>
+                    <UserIcon size={18} className="!text-black" />
+                    <span className="font-semibold text-lg !text-black">{user.name}</span>
                   </div>
                   <div className="flex items-center space-x-3 mb-3">
-                    <Mail size={16} className="text-black" />
-                    <span className="text-sm text-black">{user.email}</span>
+                    <Mail size={16} className="!text-black" />
+                    <span className="text-sm !text-black">{user.email}</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Globe size={16} className="text-black" />
-                    <span className="text-sm text-black">{user.language}</span>
+                    <Globe size={16} className="!text-black" />
+                    <span className="text-sm !text-black">{user.language}</span>
                   </div>
                 </div>
                 
                 {/* Language Settings */}
                 <div className="mb-4 pb-4 border-b border-gray-200">
-                  <h4 className="font-semibold text-black mb-3 flex items-center">
-                    <Globe size={16} className="mr-2 text-black" />
+                  <h4 className="font-semibold !text-black mb-3 flex items-center">
+                    <Globe size={16} className="mr-2 !text-black" />
                     Language Settings
                   </h4>
                   <div className="grid grid-cols-1 gap-2">
@@ -78,10 +78,10 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
                         className={`p-3 rounded-lg text-left transition-all duration-200 ${
                           language === lang.code
                             ? 'bg-blue-100 text-blue-800 border-2 border-blue-200'
-                            : 'hover:bg-gray-100 text-black border-2 border-transparent'
+                            : 'hover:bg-gray-100 !text-black border-2 border-transparent'
                         }`}
                       >
-                        <div className="font-medium">{lang.name}</div>
+                        <div className="font-medium !text-black">{lang.name}</div>
                       </button>
                     ))}
                   </div>
