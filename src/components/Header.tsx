@@ -49,27 +49,27 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
             
             {isMenuOpen && (
               <div 
-                className="absolute right-0 top-16 bg-white rounded-xl p-4 w-72 sm:w-80 z-[100] slide-up shadow-2xl border border-gray-300"
+                className="absolute right-0 top-16 bg-white rounded-xl p-4 w-72 sm:w-80 z-[100] slide-up shadow-2xl border border-gray-300 text-dark-contrast"
               >
                 <div className="mb-4 pb-4 border-b border-gray-200">
                   <div className="flex items-center space-x-3 mb-3">
-                    <UserIcon size={18} className="text-black" />
-                    <span className="font-semibold text-lg text-black">{user.name}</span>
+                    <UserIcon size={18} className="text-dark-contrast" />
+                    <span className="font-semibold text-lg text-dark-contrast">{user.name}</span>
                   </div>
                   <div className="flex items-center space-x-3 mb-3">
-                    <Mail size={16} className="text-black" />
-                    <span className="text-sm text-black">{user.email}</span>
+                    <Mail size={16} className="text-dark-contrast" />
+                    <span className="text-sm text-dark-contrast">{user.email}</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Globe size={16} className="text-black" />
-                    <span className="text-sm text-black">{user.language}</span>
+                    <Globe size={16} className="text-dark-contrast" />
+                    <span className="text-sm text-dark-contrast">{user.language}</span>
                   </div>
                 </div>
                 
                 {/* Language Settings */}
                 <div className="mb-4 pb-4 border-b border-gray-200">
-                  <h4 className="font-semibold mb-3 flex items-center text-black">
-                    <Globe size={16} className="mr-2 text-black" />
+                  <h4 className="font-semibold mb-3 flex items-center text-dark-contrast">
+                    <Globe size={16} className="mr-2 text-dark-contrast" />
                     Language Settings
                   </h4>
                   <div className="grid grid-cols-1 gap-2">
@@ -80,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
                         className={`p-3 rounded-lg text-left transition-all duration-200 border-2 ${
                           language === lang.code
                             ? 'bg-blue-100 border-blue-200 text-blue-800'
-                            : 'hover:bg-gray-100 border-transparent text-black'
+                            : 'hover:bg-gray-100 border-transparent text-dark-contrast'
                         }`}
                       >
                         <div className="font-medium">
