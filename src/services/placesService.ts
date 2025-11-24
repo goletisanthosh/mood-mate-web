@@ -21,65 +21,16 @@ interface PlaceResult {
 }
 
 export class PlacesService {
-  // Get nearby hotels and accommodations using our Edge Function
+  // Get nearby hotels and accommodations
   static async getNearbyHotels(location: LocationData, radius: number = 5000): Promise<PlaceResult[]> {
-    try {
-      const { data, error } = await supabase.functions.invoke('places-search', {
-        body: {
-          location,
-          type: 'hotels',
-          provider: 'google',
-          radius
-        }
-      });
-
-      if (error) throw error;
-      return data?.results || [];
-    } catch (error) {
-      console.error('Error fetching nearby hotels:', error);
-      
-      // Fallback to mock data for demonstration
-      return this.getMockHotels(location);
-    }
+    // Using mock data - API integration removed
+    return this.getMockHotels(location);
   }
 
-  // Get nearby restaurants and food options using our Edge Function
+  // Get nearby restaurants and food options
   static async getNearbyRestaurants(location: LocationData, radius: number = 2000): Promise<PlaceResult[]> {
-    try {
-      const { data, error } = await supabase.functions.invoke('places-search', {
-        body: {
-          location,
-          type: 'restaurants',
-          provider: 'google',
-          radius
-        }
-      });
-
-      if (error) throw error;
-      return data?.results || [];
-    } catch (error) {
-      console.error('Error fetching nearby restaurants:', error);
-      
-      // Try Yelp as fallback
-      try {
-        const { data: yelpData, error: yelpError } = await supabase.functions.invoke('places-search', {
-          body: {
-            location,
-            type: 'restaurants',
-            provider: 'yelp',
-            radius
-          }
-        });
-
-        if (yelpError) throw yelpError;
-        return yelpData?.results || [];
-      } catch (yelpError) {
-        console.error('Yelp fallback also failed:', yelpError);
-        
-        // Final fallback to mock data
-        return this.getMockRestaurants(location);
-      }
-    }
+    // Using mock data - API integration removed
+    return this.getMockRestaurants(location);
   }
 
   // Mock data for demonstration when APIs are not available
