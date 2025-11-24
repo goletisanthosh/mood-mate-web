@@ -288,27 +288,6 @@ const IndexContent = () => {
           ) : (
             <RecommendationsSection recommendations={recommendations} />
           )}
-
-          {/* Real-time Places Section */}
-          {currentLocation && (
-            <div className="grid gap-4 sm:gap-6">
-              <PlacesSection
-                title="Nearby Hotels & Stays"
-                places={hotels}
-                loading={placesLoading}
-                error={placesError}
-                icon={<Hotel className="w-6 h-6 text-blue-300" />}
-              />
-              
-              <PlacesSection
-                title="Food & Restaurants"
-                places={restaurants}
-                loading={placesLoading}
-                error={placesError}
-                icon={<UtensilsCrossed className="w-6 h-6 text-orange-300" />}
-              />
-            </div>
-          )}
         </div>
         
         <footer className="mt-8 sm:mt-12 text-center">
