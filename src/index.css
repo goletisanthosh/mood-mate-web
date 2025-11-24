@@ -87,139 +87,67 @@
   }
 }
 
-/* Enhanced Day/Night Background Gradients - Modern & Beautiful */
+/* Simplified Background Gradients - 3 Beautiful Options */
 
-/* DAY BACKGROUNDS - Vibrant and energetic */
-.sunny-morning-bg {
-  background: linear-gradient(135deg, 
-    #667eea 0%,
-    #764ba2 20%,
-    #f093fb 40%,
-    #f5576c 60%,
-    #4facfe 80%,
-    #00f2fe 100%
-  );
-}
-
-.sunny-afternoon-bg {
-  background: linear-gradient(135deg, 
-    #fa709a 0%,
-    #fee140 25%,
-    #fa709a 50%,
-    #667eea 75%,
-    #764ba2 100%
-  );
-}
-
-.sunny-evening-bg {
-  background: linear-gradient(135deg, 
-    #ff9472 0%,
-    #f2709c 25%,
-    #ad5389 50%,
-    #3c1053 75%,
-    #2c1810 100%
-  );
-}
-
-.cloudy-morning-bg {
+/* LIGHT BACKGROUND - For evening, cloudy, rainy weather */
+.light-bg {
   background: linear-gradient(135deg, 
     #a8edea 0%,
-    #fed6e3 25%,
-    #d299c2 50%,
-    #fef9d7 75%,
-    #667eea 100%
-  );
-}
-
-.cloudy-afternoon-bg {
-  background: linear-gradient(135deg, 
-    #89f7fe 0%,
-    #66a6ff 25%,
-    #667eea 50%,
-    #764ba2 75%,
-    #f093fb 100%
-  );
-}
-
-.rainy-morning-bg {
-  background: linear-gradient(135deg, 
-    #667eea 0%,
-    #764ba2 25%,
-    #667eea 50%,
-    #89f7fe 75%,
-    #66a6ff 100%
-  );
-}
-
-.rainy-afternoon-bg {
-  background: linear-gradient(135deg, 
-    #48c6ef 0%,
-    #6f86d6 25%,
-    #667eea 50%,
-    #764ba2 75%,
-    #667eea 100%
-  );
-}
-
-/* AUTH PAGE BACKGROUND - Elegant gradient for authentication */
-.auth-bg {
-  background: linear-gradient(135deg, 
-    #667eea 0%,
-    #764ba2 25%,
-    #f093fb 50%,
-    #f5576c 75%,
-    #4facfe 100%
-  );
-}
-
-/* EVENING/NIGHT BACKGROUNDS - Elegant and sophisticated */
-.cloudy-evening-bg {
-  background: linear-gradient(135deg, 
-    #ffecd2 0%,
-    #fcb69f 25%,
-    #ff9a9e 50%,
-    #fecfef 75%,
-    #fecfef 100%
-  );
-}
-
-.rainy-evening-bg {
-  background: linear-gradient(135deg, 
-    #ffecd2 0%,
-    #fcb69f 25%,
-    #a8edea 50%,
-    #fed6e3 75%,
+    #fed6e3 50%,
     #ffecd2 100%
   );
 }
 
-.snowy-bg {
+/* VIBRANT BACKGROUND - For sunny, clear, good weather */
+.vibrant-bg {
   background: linear-gradient(135deg, 
-    #ffecd2 0%,
-    #fcb69f 25%,
-    #ff9a9e 50%,
-    #fad0c4 75%,
-    #ffd1ff 100%
+    #667eea 0%,
+    #764ba2 50%,
+    #f093fb 100%
   );
 }
 
-.clear-night-bg {
+/* DARK BACKGROUND - For night time */
+.dark-bg {
+  background: linear-gradient(135deg, 
+    #2c3e50 0%,
+    #3498db 50%,
+    #2c3e50 100%
+  );
+}
+
+/* Keep individual class names for compatibility */
+.sunny-morning-bg,
+.sunny-afternoon-bg,
+.sunny-evening-bg,
+.cloudy-afternoon-bg,
+.rainy-morning-bg,
+.rainy-afternoon-bg,
+.clear-night-bg,
+.auth-bg {
   background: linear-gradient(135deg, 
     #667eea 0%,
-    #764ba2 25%,
-    #667eea 50%,
-    #89f7fe 75%,
-    #66a6ff 100%
+    #764ba2 50%,
+    #f093fb 100%
+  );
+}
+
+.cloudy-morning-bg,
+.cloudy-evening-bg,
+.rainy-evening-bg,
+.snowy-bg {
+  background: linear-gradient(135deg, 
+    #a8edea 0%,
+    #fed6e3 50%,
+    #ffecd2 100%
   );
 }
 
 .night-bg {
   background: linear-gradient(135deg, 
-    #a8edea 0%,
-    #fed6e3 25%,
-    #ffecd2 50%,
-    #fcb69f 75%,
-    #ff9a9e 100%
+    #2c3e50 0%,
+    #3498db 50%,
+    #2c3e50 100%
   );
 }
 
